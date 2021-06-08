@@ -28,9 +28,9 @@ class SortByAuthor implements Comparator<AudioElement> {
 
 public class MusicHub {
     public static final String DIR = System.getProperty("user.dir");
-    public static final String ALBUMS_FILE_PATH = DIR + "\\files\\albums.xml";
-    public static final String PLAYLISTS_FILE_PATH = DIR + "\\files\\playlists.xml";
-    public static final String ELEMENTS_FILE_PATH = DIR + "\\files\\elements.xml";
+    public static final String ALBUMS_FILE_PATH = DIR + "/files/albums.xml";
+    public static final String PLAYLISTS_FILE_PATH = DIR + "/files/playlists.xml";
+    public static final String ELEMENTS_FILE_PATH = DIR + "/files/elements.xml";
     private final List<Album> albums;
     private final List<PlayList> playlists;
     private final List<AudioElement> elements;
