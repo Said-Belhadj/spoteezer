@@ -5,7 +5,7 @@
 This project was done by a team of 3 amazing people:
 
 + Aimeric ADJUTOR
-+ Said BELHADJ
++ Saïd BELHADJ
 + Anthony BOULANT
 
 ## The project
