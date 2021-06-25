@@ -3,7 +3,15 @@ package musichub.business;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.UUID;
+
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 
 public abstract class AudioElement {
     protected String title;
@@ -83,6 +91,14 @@ public abstract class AudioElement {
         contentElement.appendChild(document.createTextNode(content));
         parentElement.appendChild(contentElement);
 
+    }
+    
+    public void playSong() throws UnsupportedAudioFileException, IOException, LineUnavailableException {
+    	File file = new File(this.content);
+    	AudioInputStream audioStream = AudioSystem.getAudioInputStream(file);
+    	Clip clip = AudioSystem.getClip();
+    	clip.open(audioStream);
+    	clip.start();
     }
 
 }
