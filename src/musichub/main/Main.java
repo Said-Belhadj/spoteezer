@@ -20,8 +20,10 @@ public class Main {
 
         if (choice.length() == 0) System.exit(0);
 
-        while (choice.charAt(0) != 'q') {
+        while (!choice.equals("")) { //if the user puts nothing, quit the loop/system
             switch (choice.charAt(0)) {
+                case 'q': //added the option directly in the switch instead of the loop
+                    System.exit(0);
                 case 'h':
                     printAvailableCommands();
                     choice = scan.nextLine();
