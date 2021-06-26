@@ -9,11 +9,11 @@
         <genre>pop</genre>
     </song>
     <song>
-        <title>I Want to Hold your Hand</title>
-        <artist>The Beatles</artist>
+        <title>Side To Side</title>
+        <artist>Ariana Grande</artist>
         <length>186</length>
         <UUID>66d277ca-cbc4-471c-a07e-082363375bcc</UUID>
-        <content>i_want_to_hold_your_hand.mp3</content>
+        <content>Song/Side_To_Side.wav</content>
         <genre>rock</genre>
     </song>
     <song>
