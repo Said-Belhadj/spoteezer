@@ -12,6 +12,7 @@
             <UUID>b2ee0ca0-b5e2-4bc9-8fed-7932fb145f2f</UUID>
             <UUID>bbe99998-1be6-4a40-8bf0-6a7fce9087c9</UUID>
             <UUID>66d277ca-cbc4-471c-a07e-082363375bcc</UUID>
+            <UUID>44136020-dc80-4522-9b71-2b9aad5e3039</UUID>
         </songs>
     </album>
     <album>
@@ -22,6 +23,7 @@
         <date>1978-01-23</date>
         <songs>
             <UUID>44136020-dc80-4522-9b71-2b9aad5e3039</UUID>
+            <UUID>66d277ca-cbc4-471c-a07e-082363375bcc</UUID>
         </songs>
     </album>
 </albums>
