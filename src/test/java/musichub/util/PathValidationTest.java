@@ -1,9 +1,9 @@
-package musichub.business;
+package musichub.util;
 
 
 import org.junit.jupiter.api.Test;
 
-import static musichub.business.PathValidation.isPathValid;
+import static musichub.util.PathValidation.isPathValid;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class PathValidationTest {

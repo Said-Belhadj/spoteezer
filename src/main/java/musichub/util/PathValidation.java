@@ -1,4 +1,4 @@
-package musichub.business;
+package musichub.util;
 
 import java.nio.file.Files;
 import java.nio.file.Path;

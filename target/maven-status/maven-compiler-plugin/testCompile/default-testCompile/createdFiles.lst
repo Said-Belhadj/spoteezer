@@ -1,1 +1,2 @@
-musichub\business\PathValidationTest.class
+musichub\util\PathValidationTest.class
+musichub\util\LogHandlerTest.class

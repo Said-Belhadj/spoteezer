@@ -1,6 +1,6 @@
 musichub\util\XMLHandler.class
-musichub\business\PathValidation.class
 musichub\business\NoElementFoundException.class
+musichub\util\LogHandler.class
 musichub\business\Language.class
 musichub\business\PlayList.class
 musichub\main\Main.class
@@ -11,6 +11,7 @@ musichub\business\SortByAuthor.class
 musichub\business\NoAlbumFoundException.class
 musichub\business\AudioBook.class
 musichub\business\Song.class
+musichub\util\PathValidation.class
 musichub\business\Genre.class
 musichub\business\NoPlayListFoundException.class
 musichub\business\Category.class
