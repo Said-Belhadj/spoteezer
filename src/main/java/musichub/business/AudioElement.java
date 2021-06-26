@@ -3,11 +3,16 @@ package musichub.business;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
-import javax.sound.sampled.*;
 import java.io.File;
 import java.io.IOException;
 import java.util.Scanner;
 import java.util.UUID;
+
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 
 public abstract class AudioElement {
     protected String title;
@@ -88,35 +93,40 @@ public abstract class AudioElement {
         parentElement.appendChild(contentElement);
 
     }
-
+    
     public void manageAudioElement() throws UnsupportedAudioFileException, IOException, LineUnavailableException {
-
-        Scanner scanner = new Scanner(System.in);
-
-        File file = new File(this.content);
-        AudioInputStream audioStream = AudioSystem.getAudioInputStream(file);
-        Clip clip = AudioSystem.getClip();
-        clip.open(audioStream);
-
-        String action = "";
-
-        while (!action.equals("Q")) {
-            System.out.println("P = Play \b S = Stop \b R = Reset \b Q = Quit");
-            System.out.println("Enter your choice");
-            action = scanner.next();
-            action = action.toUpperCase();
-
-            switch (action) {
-                case "S", "Q" -> clip.stop();
-                case "P" -> clip.start();
-                case "R" -> clip.setMicrosecondPosition(0);
-                default -> System.out.println("try again");
-            }
-            System.out.println("You stopped the Audio element");
-        }
-
-        clip.close();
-
+    	
+    	Scanner scanner = new Scanner(System.in); 
+    	
+    	File file = new File(this.content);
+    	AudioInputStream audioStream = AudioSystem.getAudioInputStream(file);
+    	Clip clip = AudioSystem.getClip();
+    	clip.open(audioStream);
+    	
+    	String action = "";
+    			
+    	while(!action.equals("Q")) {
+    		System.out.println("P = Play \b S = Stop \b R = Reset \b Q = Quit");
+    		System.out.println("Enter your choice");
+    		action = scanner.next();
+        	action = action.toUpperCase();
+        	
+        	switch(action) {
+        		case "S" : clip.stop();
+        		break;
+        		case "P" : clip.start();
+        		break;
+        		case "R" : clip.setMicrosecondPosition(0);
+        		break;
+        		case "Q" : clip.stop();
+        		break;
+        		default : System.out.println("try again");
+        	}
+        	System.out.println("You stoped the Audio element");
+    	}
+    	
+    	clip.close();
+    
     }
 
 }

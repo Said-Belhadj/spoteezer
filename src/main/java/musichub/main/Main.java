@@ -2,12 +2,13 @@ package musichub.main;
 
 import musichub.business.*;
 
-import javax.sound.sampled.LineUnavailableException;
-import javax.sound.sampled.UnsupportedAudioFileException;
 import java.io.IOException;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
+
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 
 public class Main {
     public static void main(String[] args) throws UnsupportedAudioFileException, IOException, LineUnavailableException {
@@ -45,8 +46,8 @@ public class Main {
 
                     albumTitle = scan.nextLine();
                     try {
-                        List<Song> songs = theHub.getAlbumSongsSortedByGenre(albumTitle);
-                        System.out.println(songs);
+                    	List<Song> songs = theHub.getAlbumSongsSortedByGenre(albumTitle);
+                        System.out.println(songs);;
                     } catch (NoAlbumFoundException ex) {
                         System.out.println("No album found with the requested title " + ex.getMessage());
                     }
@@ -60,7 +61,7 @@ public class Main {
 
                     albumTitle = scan.nextLine();
                     try {
-                        List<AudioElement> songs = theHub.getAlbumSongs(albumTitle);
+                    	List<AudioElement> songs = theHub.getAlbumSongs(albumTitle);
                         System.out.println(theHub.getAlbumSongs(albumTitle));
                         String song = scan.nextLine();
                         theHub.getAudioElement(songs, song);
