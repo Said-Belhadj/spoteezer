@@ -3,7 +3,6 @@ package musichub.main;
 import musichub.business.*;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
@@ -47,7 +46,8 @@ public class Main {
 
                     albumTitle = scan.nextLine();
                     try {
-                        System.out.println(theHub.getAlbumSongsSortedByGenre(albumTitle));
+                    	List<Song> songs = theHub.getAlbumSongsSortedByGenre(albumTitle);
+                        System.out.println(songs);;
                     } catch (NoAlbumFoundException ex) {
                         System.out.println("No album found with the requested title " + ex.getMessage());
                     }
@@ -64,7 +64,7 @@ public class Main {
                     	List<AudioElement> songs = theHub.getAlbumSongs(albumTitle);
                         System.out.println(theHub.getAlbumSongs(albumTitle));
                         String song = scan.nextLine();
-                        theHub.getSong(songs, song);
+                        theHub.getAudioElement(songs, song);
                     } catch (NoAlbumFoundException ex) {
                         System.out.println("No album found with the requested title " + ex.getMessage());
                     }

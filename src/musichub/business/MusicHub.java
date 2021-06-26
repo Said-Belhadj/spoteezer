@@ -331,10 +331,10 @@ public class MusicHub {
         xmlHandler.createXMLFile(document, ELEMENTS_FILE_PATH);
     }
     
-    public void getSong(List<AudioElement> Songs, String songTitle) throws NoAlbumFoundException, UnsupportedAudioFileException, IOException, LineUnavailableException {
-        for (AudioElement s : Songs) {
-            if (s.getTitle().equalsIgnoreCase(songTitle)) {
-                s.playSong();
+    public void getAudioElement(List<AudioElement> audios, String elementTitle) throws NoAlbumFoundException, UnsupportedAudioFileException, IOException, LineUnavailableException {
+        for (AudioElement el : audios) {
+            if (el.getTitle().equalsIgnoreCase(elementTitle)) {
+                el.manageAudioElement();
             }
         }
 
