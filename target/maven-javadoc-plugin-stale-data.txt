@@ -1,0 +1,64 @@
+@options
+@argfile
+-classpath
+'C:/Users/SoftA/.m2/repository/org/junit/jupiter/junit-jupiter-api/5.0.2/junit-jupiter-api-5.0.2.jar;C:/Users/SoftA/.m2/repository/org/opentest4j/opentest4j/1.0.0/opentest4j-1.0.0.jar;C:/Users/SoftA/.m2/repository/org/junit/platform/junit-platform-commons/1.0.2/junit-platform-commons-1.0.2.jar;C:/Users/SoftA/.m2/repository/org/junit/jupiter/junit-jupiter-engine/5.0.2/junit-jupiter-engine-5.0.2.jar;C:/Users/SoftA/.m2/repository/org/junit/platform/junit-platform-engine/1.0.2/junit-platform-engine-1.0.2.jar'
+-encoding
+'Cp1252'
+-protected
+--release
+16
+-sourcepath
+'C:/Users/SoftA/Documents/spoteezer/src/main/java'
+-author
+-bottom
+'Copyright &#169; 2021. All rights reserved.'
+-charset
+'UTF-8'
+-d
+'C:/Users/SoftA/Documents/spoteezer/target/site/apidocs'
+-docencoding
+'UTF-8'
+-doctitle
+'spoteezer 0.1.0 API'
+-use
+-version
+-windowtitle
+'spoteezer 0.1.0 API'
+'C:/Users/SoftA/Documents/spoteezer/src/main/java/musichub/business/Album.java'
+'C:/Users/SoftA/Documents/spoteezer/src/main/java/musichub/business/AudioBook.java'
+'C:/Users/SoftA/Documents/spoteezer/src/main/java/musichub/business/AudioElement.java'
+'C:/Users/SoftA/Documents/spoteezer/src/main/java/musichub/business/Category.java'
+'C:/Users/SoftA/Documents/spoteezer/src/main/java/musichub/business/Genre.java'
+'C:/Users/SoftA/Documents/spoteezer/src/main/java/musichub/business/Language.java'
+'C:/Users/SoftA/Documents/spoteezer/src/main/java/musichub/business/MusicHub.java'
+'C:/Users/SoftA/Documents/spoteezer/src/main/java/musichub/business/NoAlbumFoundException.java'
+'C:/Users/SoftA/Documents/spoteezer/src/main/java/musichub/business/NoElementFoundException.java'
+'C:/Users/SoftA/Documents/spoteezer/src/main/java/musichub/business/NoPlayListFoundException.java'
+'C:/Users/SoftA/Documents/spoteezer/src/main/java/musichub/business/PlayList.java'
+'C:/Users/SoftA/Documents/spoteezer/src/main/java/musichub/business/Song.java'
+'C:/Users/SoftA/Documents/spoteezer/src/main/java/musichub/main/Main.java'
+'C:/Users/SoftA/Documents/spoteezer/src/main/java/musichub/util/XMLHandler.java'
+C:\Users\SoftA\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.0.2\junit-jupiter-api-5.0.2.jar = 1624015816799
+C:\Users\SoftA\.m2\repository\org\opentest4j\opentest4j\1.0.0\opentest4j-1.0.0.jar = 1624015816785
+C:\Users\SoftA\.m2\repository\org\junit\platform\junit-platform-commons\1.0.2\junit-platform-commons-1.0.2.jar = 1624015816770
+C:\Users\SoftA\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.0.2\junit-jupiter-engine-5.0.2.jar = 1624015816790
+C:\Users\SoftA\.m2\repository\org\junit\platform\junit-platform-engine\1.0.2\junit-platform-engine-1.0.2.jar = 1624015816783
+C:\Users\SoftA\Documents\spoteezer\src\main\java = 1624701235404
+C:\Users\SoftA\Documents\spoteezer\target\site\apidocs\allclasses-index.html = 1624703620814
+C:\Users\SoftA\Documents\spoteezer\target\site\apidocs\allpackages-index.html = 1624703620816
+C:\Users\SoftA\Documents\spoteezer\target\site\apidocs\element-list = 1624703620727
+C:\Users\SoftA\Documents\spoteezer\target\site\apidocs\help-doc.html = 1624703620841
+C:\Users\SoftA\Documents\spoteezer\target\site\apidocs\index-all.html = 1624703620837
+C:\Users\SoftA\Documents\spoteezer\target\site\apidocs\index.html = 1624703620798
+C:\Users\SoftA\Documents\spoteezer\target\site\apidocs\jquery-ui.overrides.css = 1624703620864
+C:\Users\SoftA\Documents\spoteezer\target\site\apidocs\member-search-index.js = 1624703620820
+C:\Users\SoftA\Documents\spoteezer\target\site\apidocs\module-search-index.js = 1624703620817
+C:\Users\SoftA\Documents\spoteezer\target\site\apidocs\overview-summary.html = 1624703620839
+C:\Users\SoftA\Documents\spoteezer\target\site\apidocs\overview-tree.html = 1624703620795
+C:\Users\SoftA\Documents\spoteezer\target\site\apidocs\package-search-index.js = 1624703620818
+C:\Users\SoftA\Documents\spoteezer\target\site\apidocs\script.js = 1624703620845
+C:\Users\SoftA\Documents\spoteezer\target\site\apidocs\search.js = 1624703620848
+C:\Users\SoftA\Documents\spoteezer\target\site\apidocs\serialized-form.html = 1624703620749
+C:\Users\SoftA\Documents\spoteezer\target\site\apidocs\stylesheet.css = 1624703620844
+C:\Users\SoftA\Documents\spoteezer\target\site\apidocs\tag-search-index.js = 1624703620821
+C:\Users\SoftA\Documents\spoteezer\target\site\apidocs\type-search-index.js = 1624703620819

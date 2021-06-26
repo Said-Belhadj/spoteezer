@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>esiea.softwareengineering</groupId>
-  <artifactId>spoteezer</artifactId>
-  <version>0.1.0</version>
-  <build>
-    <plugins>
-      <plugin>
-        <artifactId>maven-shade-plugin</artifactId>
-        <version>3.2.4</version>
-        <executions>
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>esiea.softwareengineering</groupId>
+    <artifactId>spoteezer</artifactId>
+    <version>0.1.0</version>
+    <build>
+        <plugins>
+            <plugin>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>3.2.4</version>
+                <executions>
           <execution>
             <phase>package</phase>
             <goals>
@@ -51,15 +51,17 @@
       </plugin>
       <plugin>
         <artifactId>maven-compiler-plugin</artifactId>
-        <configuration>
-          <source>14</source>
-          <target>14</target>
-        </configuration>
+          <configuration>
+              <source>16</source>
+              <target>16</target>
+          </configuration>
       </plugin>
     </plugins>
   </build>
-  <properties>
-    <maven.compiler.target>1.8</maven.compiler.target>
-    <maven.compiler.source>1.8</maven.compiler.source>
-  </properties>
+    <properties>
+        <maven.compiler.release>16</maven.compiler.release>
+        <maven.compiler.target>16</maven.compiler.target>
+        <java.version>16</java.version>
+        <maven.compiler.source>16</maven.compiler.source>
+    </properties>
 </project>
