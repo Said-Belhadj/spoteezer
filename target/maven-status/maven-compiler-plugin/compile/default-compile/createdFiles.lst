@@ -1,4 +1,5 @@
 musichub\util\XMLHandler.class
+musichub\business\PathValidation.class
 musichub\business\NoElementFoundException.class
 musichub\business\Language.class
 musichub\business\PlayList.class
