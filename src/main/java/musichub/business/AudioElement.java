@@ -3,6 +3,10 @@ package musichub.business;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
+import javax.sound.sampled.*;
+import java.io.File;
+import java.io.IOException;
+import java.util.Scanner;
 import java.util.UUID;
 
 public abstract class AudioElement {
@@ -82,6 +86,36 @@ public abstract class AudioElement {
         Element contentElement = document.createElement("content");
         contentElement.appendChild(document.createTextNode(content));
         parentElement.appendChild(contentElement);
+
+    }
+
+    public void manageAudioElement() throws UnsupportedAudioFileException, IOException, LineUnavailableException {
+
+        Scanner scanner = new Scanner(System.in);
+
+        File file = new File(this.content);
+        AudioInputStream audioStream = AudioSystem.getAudioInputStream(file);
+        Clip clip = AudioSystem.getClip();
+        clip.open(audioStream);
+
+        String action = "";
+
+        while (!action.equals("Q")) {
+            System.out.println("P = Play \b S = Stop \b R = Reset \b Q = Quit");
+            System.out.println("Enter your choice");
+            action = scanner.next();
+            action = action.toUpperCase();
+
+            switch (action) {
+                case "S", "Q" -> clip.stop();
+                case "P" -> clip.start();
+                case "R" -> clip.setMicrosecondPosition(0);
+                default -> System.out.println("try again");
+            }
+            System.out.println("You stopped the Audio element");
+        }
+
+        clip.close();
 
     }
 

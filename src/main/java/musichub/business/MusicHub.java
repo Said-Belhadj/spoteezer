@@ -6,6 +6,9 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
+import java.io.IOException;
 import java.util.*;
 
 class SortByDate implements Comparator<Album> {
@@ -325,5 +328,14 @@ public class MusicHub {
             }
         }
         xmlHandler.createXMLFile(document, ELEMENTS_FILE_PATH);
+    }
+
+    public void getAudioElement(List<AudioElement> audios, String elementTitle) throws NoAlbumFoundException, UnsupportedAudioFileException, IOException, LineUnavailableException {
+        for (AudioElement el : audios) {
+            if (el.getTitle().equalsIgnoreCase(elementTitle)) {
+                el.manageAudioElement();
+            }
+        }
+
     }
 }
