@@ -11,10 +11,21 @@ import java.nio.file.Paths;
  * @version 1.0
  */
 
-public class PathValidation {
+public final class PathValidation {
 
     /**
-     * Methode that checks the validity of a given path
+     * Method that just throws an AssertionError if the class is called
+     *
+     * @throws AssertionError you can't instantiate this class
+     * @author Aimeric ADJUTOR
+     */
+
+    public PathValidation() {
+        throw new AssertionError("You just can't instantiate this class.");
+    }
+
+    /**
+     * Method that checks the validity of a given path
      *
      * @param inputPath the path given by the user
      * @return a boolean

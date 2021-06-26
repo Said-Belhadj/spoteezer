@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Album.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">spoteezer</a> &gt; <a href="index.source.html" class="el_package">musichub.business</a> &gt; <span class="el_source">Album.java</span></div><h1>Album.java</h1><pre class="source lang-java linenums">package musichub.business;
+
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.*;
+
+
+public class Album {
+    private final String title;
+    private final int lengthInSeconds;
+    private final UUID uuid;
+    private String artist;
+    private Date date;
+    private ArrayList&lt;UUID&gt; songsUIDs;
+
+<span class="nc" id="L21">    public Album(String title, String artist, int lengthInSeconds, String id, String date, ArrayList&lt;UUID&gt; songsUIDs) {</span>
+<span class="nc" id="L22">        this.title = title;</span>
+<span class="nc" id="L23">        this.artist = artist;</span>
+<span class="nc" id="L24">        this.lengthInSeconds = lengthInSeconds;</span>
+<span class="nc" id="L25">        this.uuid = UUID.fromString(id);</span>
+        try {
+<span class="nc" id="L27">            SimpleDateFormat sdf = new SimpleDateFormat(&quot;yyyy-MM-dd&quot;);</span>
+<span class="nc" id="L28">            this.date = sdf.parse(date);</span>
+<span class="nc" id="L29">        } catch (ParseException ex) {</span>
+<span class="nc" id="L30">            ex.printStackTrace();</span>
+<span class="nc" id="L31">        }</span>
+<span class="nc" id="L32">        this.songsUIDs = songsUIDs;</span>
+<span class="nc" id="L33">    }</span>
+
+<span class="nc" id="L35">    public Album(String title, String artist, int lengthInSeconds, String date) {</span>
+<span class="nc" id="L36">        this.title = title;</span>
+<span class="nc" id="L37">        this.artist = artist;</span>
+<span class="nc" id="L38">        this.lengthInSeconds = lengthInSeconds;</span>
+<span class="nc" id="L39">        this.uuid = UUID.randomUUID();</span>
+        try {
+<span class="nc" id="L41">            SimpleDateFormat sdf = new SimpleDateFormat(&quot;yyyy-MM-dd&quot;);</span>
+<span class="nc" id="L42">            this.date = sdf.parse(date);</span>
+<span class="nc" id="L43">        } catch (ParseException ex) {</span>
+<span class="nc" id="L44">            ex.printStackTrace();</span>
+<span class="nc" id="L45">        }</span>
+<span class="nc" id="L46">        this.songsUIDs = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L47">    }</span>
+
+<span class="nc" id="L49">    public Album(Element xmlElement) throws Exception {</span>
+        {
+<span class="nc" id="L51">            this.title = xmlElement.getElementsByTagName(&quot;title&quot;).item(0).getTextContent();</span>
+<span class="nc" id="L52">            this.lengthInSeconds = Integer.parseInt(xmlElement.getElementsByTagName(&quot;lengthInSeconds&quot;).item(0).getTextContent());</span>
+<span class="nc" id="L53">            String uuid = null;</span>
+            try {
+<span class="nc" id="L55">                uuid = xmlElement.getElementsByTagName(&quot;UUID&quot;).item(0).getTextContent();</span>
+<span class="nc" id="L56">            } catch (Exception ex) {</span>
+<span class="nc" id="L57">                System.out.println(&quot;Empty album UUID, will create a new one&quot;);</span>
+<span class="nc" id="L58">            }</span>
+<span class="nc bnc" id="L59" title="All 4 branches missed.">            if ((uuid == null) || (uuid.isEmpty()))</span>
+<span class="nc" id="L60">                this.uuid = UUID.randomUUID();</span>
+<span class="nc" id="L61">            else this.uuid = UUID.fromString(uuid);</span>
+
+<span class="nc" id="L63">            SimpleDateFormat sdf = new SimpleDateFormat(&quot;yyyy-MM-dd&quot;);</span>
+<span class="nc" id="L64">            this.date = sdf.parse(xmlElement.getElementsByTagName(&quot;date&quot;).item(0).getTextContent());</span>
+            //parse list of songs:
+<span class="nc" id="L66">            Node songsElement = xmlElement.getElementsByTagName(&quot;songs&quot;).item(0);</span>
+<span class="nc" id="L67">            NodeList songUUIDNodes = songsElement.getChildNodes();</span>
+<span class="nc bnc" id="L68" title="All 2 branches missed.">            if (songUUIDNodes == null) return;</span>
+
+<span class="nc" id="L70">            this.songsUIDs = new ArrayList&lt;&gt;();</span>
+
+<span class="nc bnc" id="L72" title="All 2 branches missed.">            for (int i = 0; i &lt; songUUIDNodes.getLength(); i++) {</span>
+<span class="nc bnc" id="L73" title="All 2 branches missed.">                if (songUUIDNodes.item(i).getNodeType() == Node.ELEMENT_NODE) {</span>
+<span class="nc" id="L74">                    Element songElement = (Element) songUUIDNodes.item(i);</span>
+<span class="nc bnc" id="L75" title="All 2 branches missed.">                    if (songElement.getNodeName().equals(&quot;UUID&quot;)) {</span>
+                        try {
+<span class="nc" id="L77">                            this.addSong(UUID.fromString(songElement.getTextContent()));</span>
+<span class="nc" id="L78">                        } catch (Exception ex) {</span>
+<span class="nc" id="L79">                            ex.printStackTrace();</span>
+<span class="nc" id="L80">                        }</span>
+                    }
+                }
+            }
+        }
+<span class="nc" id="L85">    }</span>
+
+
+    public void addSong(UUID song) {
+<span class="nc" id="L89">        songsUIDs.add(song);</span>
+<span class="nc" id="L90">    }</span>
+
+
+    public List&lt;UUID&gt; getSongs() {
+<span class="nc" id="L94">        return songsUIDs;</span>
+    }
+
+    public ArrayList&lt;UUID&gt; getSongsRandomly() {
+<span class="nc" id="L98">        ArrayList&lt;UUID&gt; shuffledSongs = songsUIDs;</span>
+<span class="nc" id="L99">        Collections.shuffle(shuffledSongs);</span>
+<span class="nc" id="L100">        return shuffledSongs;</span>
+    }
+
+    public String getTitle() {
+<span class="nc" id="L104">        return title;</span>
+    }
+
+    public Date getDate() {
+<span class="nc" id="L108">        return date;</span>
+    }
+
+    public void createXMLElement(Document document, Element parentElement) {
+<span class="nc" id="L112">        Element albumElement = document.createElement(&quot;album&quot;);</span>
+<span class="nc" id="L113">        parentElement.appendChild(albumElement);</span>
+
+<span class="nc" id="L115">        Element nameElement = document.createElement(&quot;title&quot;);</span>
+<span class="nc" id="L116">        nameElement.appendChild(document.createTextNode(title));</span>
+<span class="nc" id="L117">        albumElement.appendChild(nameElement);</span>
+
+<span class="nc" id="L119">        Element artistElement = document.createElement(&quot;artist&quot;);</span>
+<span class="nc" id="L120">        artistElement.appendChild(document.createTextNode(artist));</span>
+<span class="nc" id="L121">        albumElement.appendChild(artistElement);</span>
+
+<span class="nc" id="L123">        Element lengthElement = document.createElement(&quot;lengthInSeconds&quot;);</span>
+<span class="nc" id="L124">        lengthElement.appendChild(document.createTextNode(Integer.valueOf(lengthInSeconds).toString()));</span>
+<span class="nc" id="L125">        albumElement.appendChild(lengthElement);</span>
+
+<span class="nc" id="L127">        Element UUIDElement = document.createElement(&quot;UUID&quot;);</span>
+<span class="nc" id="L128">        UUIDElement.appendChild(document.createTextNode(uuid.toString()));</span>
+<span class="nc" id="L129">        albumElement.appendChild(UUIDElement);</span>
+
+<span class="nc" id="L131">        Element dateElement = document.createElement(&quot;date&quot;);</span>
+<span class="nc" id="L132">        SimpleDateFormat sdf = new SimpleDateFormat(&quot;yyyy-MM-dd&quot;);</span>
+<span class="nc" id="L133">        dateElement.appendChild(document.createTextNode(sdf.format(date)));</span>
+<span class="nc" id="L134">        albumElement.appendChild(dateElement);</span>
+
+<span class="nc" id="L136">        Element songsElement = document.createElement(&quot;songs&quot;);</span>
+<span class="nc bnc" id="L137" title="All 2 branches missed.">        for (UUID currentUUID : this.songsUIDs) {</span>
+<span class="nc" id="L138">            Element songUUIDElement = document.createElement(&quot;UUID&quot;);</span>
+<span class="nc" id="L139">            songUUIDElement.appendChild(document.createTextNode(currentUUID.toString()));</span>
+<span class="nc" id="L140">            songsElement.appendChild(songUUIDElement);</span>
+<span class="nc" id="L141">        }</span>
+<span class="nc" id="L142">        albumElement.appendChild(songsElement);</span>
+
+<span class="nc" id="L144">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

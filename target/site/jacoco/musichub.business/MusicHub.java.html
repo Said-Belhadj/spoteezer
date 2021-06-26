@@ -1,0 +1,343 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>MusicHub.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">spoteezer</a> &gt; <a href="index.source.html" class="el_package">musichub.business</a> &gt; <span class="el_source">MusicHub.java</span></div><h1>MusicHub.java</h1><pre class="source lang-java linenums">package musichub.business;
+
+import musichub.util.XMLHandler;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+
+import java.io.IOException;
+import java.util.*;
+
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
+
+<span class="nc" id="L15">class SortByDate implements Comparator&lt;Album&gt; {</span>
+    public int compare(Album a1, Album a2) {
+<span class="nc" id="L17">        return a1.getDate().compareTo(a2.getDate());</span>
+    }
+}
+
+<span class="nc" id="L21">class SortByGenre implements Comparator&lt;Song&gt; {</span>
+    public int compare(Song s1, Song s2) {
+<span class="nc" id="L23">        return s1.getGenre().compareTo(s2.getGenre());</span>
+    }
+}
+
+<span class="nc" id="L27">class SortByAuthor implements Comparator&lt;AudioElement&gt; {</span>
+    public int compare(AudioElement e1, AudioElement e2) {
+<span class="nc" id="L29">        return e1.getArtist().compareTo(e2.getArtist());</span>
+    }
+}
+
+public class MusicHub {
+<span class="nc" id="L34">    public static final String DIR = System.getProperty(&quot;user.dir&quot;);</span>
+<span class="nc" id="L35">    public static final String ALBUMS_FILE_PATH = DIR + &quot;/files/albums.xml&quot;;</span>
+<span class="nc" id="L36">    public static final String PLAYLISTS_FILE_PATH = DIR + &quot;/files/playlists.xml&quot;;</span>
+<span class="nc" id="L37">    public static final String ELEMENTS_FILE_PATH = DIR + &quot;/files/elements.xml&quot;;</span>
+    private final List&lt;Album&gt; albums;
+    private final List&lt;PlayList&gt; playlists;
+    private final List&lt;AudioElement&gt; elements;
+<span class="nc" id="L41">    private final XMLHandler xmlHandler = new XMLHandler();</span>
+
+<span class="nc" id="L43">    public MusicHub() {</span>
+<span class="nc" id="L44">        albums = new LinkedList&lt;&gt;();</span>
+<span class="nc" id="L45">        playlists = new LinkedList&lt;&gt;();</span>
+<span class="nc" id="L46">        elements = new LinkedList&lt;&gt;();</span>
+<span class="nc" id="L47">        this.loadElements();</span>
+<span class="nc" id="L48">        this.loadAlbums();</span>
+<span class="nc" id="L49">        this.loadPlaylists();</span>
+<span class="nc" id="L50">    }</span>
+
+    public void addElement(AudioElement element) {
+<span class="nc" id="L53">        elements.add(element);</span>
+<span class="nc" id="L54">    }</span>
+
+    public void addAlbum(Album album) {
+<span class="nc" id="L57">        albums.add(album);</span>
+<span class="nc" id="L58">    }</span>
+
+    public void addPlaylist(PlayList playlist) {
+<span class="nc" id="L61">        playlists.add(playlist);</span>
+<span class="nc" id="L62">    }</span>
+
+    public void deletePlayList(String playListTitle) throws NoPlayListFoundException {
+
+<span class="nc" id="L66">        PlayList thePlayList = null;</span>
+<span class="nc" id="L67">        boolean result = false;</span>
+<span class="nc bnc" id="L68" title="All 2 branches missed.">        for (PlayList pl : playlists) {</span>
+<span class="nc bnc" id="L69" title="All 2 branches missed.">            if (pl.getTitle().equalsIgnoreCase(playListTitle)) {</span>
+<span class="nc" id="L70">                thePlayList = pl;</span>
+<span class="nc" id="L71">                break;</span>
+            }
+<span class="nc" id="L73">        }</span>
+
+<span class="nc bnc" id="L75" title="All 2 branches missed.">        if (thePlayList != null)</span>
+<span class="nc" id="L76">            result = playlists.remove(thePlayList);</span>
+<span class="nc bnc" id="L77" title="All 2 branches missed.">        if (!result) throw new NoPlayListFoundException(&quot;Playlist &quot; + playListTitle + &quot; not found!&quot;);</span>
+<span class="nc" id="L78">    }</span>
+
+    public Iterator&lt;Album&gt; albums() {
+<span class="nc" id="L81">        return albums.listIterator();</span>
+    }
+
+    public Iterator&lt;PlayList&gt; playlists() {
+<span class="nc" id="L85">        return playlists.listIterator();</span>
+    }
+
+    public Iterator&lt;AudioElement&gt; elements() {
+<span class="nc" id="L89">        return elements.listIterator();</span>
+    }
+
+    public String getAlbumsTitlesSortedByDate() {
+<span class="nc" id="L93">        StringBuilder titleList = new StringBuilder();</span>
+<span class="nc" id="L94">        albums.sort(new SortByDate());</span>
+<span class="nc bnc" id="L95" title="All 2 branches missed.">        for (Album al : albums)</span>
+<span class="nc" id="L96">            titleList.append(al.getTitle()).append(&quot;\n&quot;);</span>
+<span class="nc" id="L97">        return titleList.toString();</span>
+    }
+
+    public String getAudiobooksTitlesSortedByAuthor() {
+<span class="nc" id="L101">        StringBuilder titleList = new StringBuilder();</span>
+<span class="nc" id="L102">        List&lt;AudioElement&gt; audioBookList = new ArrayList&lt;&gt;();</span>
+<span class="nc bnc" id="L103" title="All 2 branches missed.">        for (AudioElement ae : elements)</span>
+<span class="nc bnc" id="L104" title="All 2 branches missed.">            if (ae instanceof AudioBook)</span>
+<span class="nc" id="L105">                audioBookList.add(ae);</span>
+<span class="nc" id="L106">        audioBookList.sort(new SortByAuthor());</span>
+<span class="nc bnc" id="L107" title="All 2 branches missed.">        for (AudioElement ab : audioBookList)</span>
+<span class="nc" id="L108">            titleList.append(ab.getArtist()).append(&quot;\n&quot;);</span>
+<span class="nc" id="L109">        return titleList.toString();</span>
+    }
+
+    public List&lt;AudioElement&gt; getAlbumSongs(String albumTitle) throws NoAlbumFoundException {
+<span class="nc" id="L113">        Album theAlbum = null;</span>
+<span class="nc" id="L114">        ArrayList&lt;AudioElement&gt; songsInAlbum = new ArrayList&lt;&gt;();</span>
+<span class="nc bnc" id="L115" title="All 2 branches missed.">        for (Album al : albums) {</span>
+<span class="nc bnc" id="L116" title="All 2 branches missed.">            if (al.getTitle().equalsIgnoreCase(albumTitle)) {</span>
+<span class="nc" id="L117">                theAlbum = al;</span>
+<span class="nc" id="L118">                break;</span>
+            }
+<span class="nc" id="L120">        }</span>
+<span class="nc bnc" id="L121" title="All 2 branches missed.">        if (theAlbum == null) throw new NoAlbumFoundException(&quot;No album with this title in the MusicHub!&quot;);</span>
+
+<span class="nc" id="L123">        List&lt;UUID&gt; songIDs = theAlbum.getSongs();</span>
+<span class="nc bnc" id="L124" title="All 2 branches missed.">        for (UUID id : songIDs)</span>
+<span class="nc bnc" id="L125" title="All 2 branches missed.">            for (AudioElement el : elements) {</span>
+<span class="nc bnc" id="L126" title="All 2 branches missed.">                if (el instanceof Song) {</span>
+<span class="nc bnc" id="L127" title="All 2 branches missed.">                    if (el.getUUID().equals(id)) songsInAlbum.add(el);</span>
+                }
+<span class="nc" id="L129">            }</span>
+<span class="nc" id="L130">        return songsInAlbum;</span>
+
+    }
+
+    public List&lt;Song&gt; getAlbumSongsSortedByGenre(String albumTitle) throws NoAlbumFoundException {
+<span class="nc" id="L135">        Album theAlbum = null;</span>
+<span class="nc" id="L136">        ArrayList&lt;Song&gt; songsInAlbum = new ArrayList&lt;&gt;();</span>
+<span class="nc bnc" id="L137" title="All 2 branches missed.">        for (Album al : albums) {</span>
+<span class="nc bnc" id="L138" title="All 2 branches missed.">            if (al.getTitle().equalsIgnoreCase(albumTitle)) {</span>
+<span class="nc" id="L139">                theAlbum = al;</span>
+<span class="nc" id="L140">                break;</span>
+            }
+<span class="nc" id="L142">        }</span>
+<span class="nc bnc" id="L143" title="All 2 branches missed.">        if (theAlbum == null) throw new NoAlbumFoundException(&quot;No album with this title in the MusicHub!&quot;);</span>
+
+<span class="nc" id="L145">        List&lt;UUID&gt; songIDs = theAlbum.getSongs();</span>
+<span class="nc bnc" id="L146" title="All 2 branches missed.">        for (UUID id : songIDs)</span>
+<span class="nc bnc" id="L147" title="All 2 branches missed.">            for (AudioElement el : elements) {</span>
+<span class="nc bnc" id="L148" title="All 2 branches missed.">                if (el instanceof Song) {</span>
+<span class="nc bnc" id="L149" title="All 2 branches missed.">                    if (el.getUUID().equals(id)) songsInAlbum.add((Song) el);</span>
+                }
+<span class="nc" id="L151">            }</span>
+<span class="nc" id="L152">        songsInAlbum.sort(new SortByGenre());</span>
+<span class="nc" id="L153">        return songsInAlbum;</span>
+
+    }
+
+    public void addElementToAlbum(String elementTitle, String albumTitle) throws NoAlbumFoundException, NoElementFoundException {
+<span class="nc" id="L158">        Album theAlbum = null;</span>
+        int i;
+<span class="nc" id="L160">        boolean found = false;</span>
+<span class="nc bnc" id="L161" title="All 2 branches missed.">        for (i = 0; i &lt; albums.size(); i++) {</span>
+<span class="nc bnc" id="L162" title="All 2 branches missed.">            if (albums.get(i).getTitle().equalsIgnoreCase(albumTitle)) {</span>
+<span class="nc" id="L163">                theAlbum = albums.get(i);</span>
+<span class="nc" id="L164">                found = true;</span>
+<span class="nc" id="L165">                break;</span>
+            }
+        }
+
+<span class="nc bnc" id="L169" title="All 2 branches missed.">        if (found) {</span>
+<span class="nc" id="L170">            AudioElement theElement = null;</span>
+<span class="nc bnc" id="L171" title="All 2 branches missed.">            for (AudioElement ae : elements) {</span>
+<span class="nc bnc" id="L172" title="All 2 branches missed.">                if (ae.getTitle().equalsIgnoreCase(elementTitle)) {</span>
+<span class="nc" id="L173">                    theElement = ae;</span>
+<span class="nc" id="L174">                    break;</span>
+                }
+<span class="nc" id="L176">            }</span>
+<span class="nc bnc" id="L177" title="All 2 branches missed.">            if (theElement != null) {</span>
+<span class="nc" id="L178">                theAlbum.addSong(theElement.getUUID());</span>
+                //replace the album in the list
+<span class="nc" id="L180">                albums.set(i, theAlbum);</span>
+<span class="nc" id="L181">            } else throw new NoElementFoundException(&quot;Element &quot; + elementTitle + &quot; not found!&quot;);</span>
+<span class="nc" id="L182">        } else throw new NoAlbumFoundException(&quot;Album &quot; + albumTitle + &quot; not found!&quot;);</span>
+
+<span class="nc" id="L184">    }</span>
+
+    public void addElementToPlayList(String elementTitle, String playListTitle) throws NoPlayListFoundException, NoElementFoundException {
+<span class="nc" id="L187">        PlayList thePlaylist = null;</span>
+        int i;
+<span class="nc" id="L189">        boolean found = false;</span>
+
+<span class="nc bnc" id="L191" title="All 2 branches missed.">        for (i = 0; i &lt; playlists.size(); i++) {</span>
+<span class="nc bnc" id="L192" title="All 2 branches missed.">            if (playlists.get(i).getTitle().equalsIgnoreCase(playListTitle)) {</span>
+<span class="nc" id="L193">                thePlaylist = playlists.get(i);</span>
+<span class="nc" id="L194">                found = true;</span>
+<span class="nc" id="L195">                break;</span>
+            }
+        }
+
+<span class="nc bnc" id="L199" title="All 2 branches missed.">        if (found) {</span>
+<span class="nc" id="L200">            AudioElement theElement = null;</span>
+<span class="nc bnc" id="L201" title="All 2 branches missed.">            for (AudioElement ae : elements) {</span>
+<span class="nc bnc" id="L202" title="All 2 branches missed.">                if (ae.getTitle().equalsIgnoreCase(elementTitle)) {</span>
+<span class="nc" id="L203">                    theElement = ae;</span>
+<span class="nc" id="L204">                    break;</span>
+                }
+<span class="nc" id="L206">            }</span>
+<span class="nc bnc" id="L207" title="All 2 branches missed.">            if (theElement != null) {</span>
+<span class="nc" id="L208">                thePlaylist.addElement(theElement.getUUID());</span>
+                //replace the album in the list
+<span class="nc" id="L210">                playlists.set(i, thePlaylist);</span>
+<span class="nc" id="L211">            } else throw new NoElementFoundException(&quot;Element &quot; + elementTitle + &quot; not found!&quot;);</span>
+
+<span class="nc" id="L213">        } else throw new NoPlayListFoundException(&quot;Playlist &quot; + playListTitle + &quot; not found!&quot;);</span>
+
+<span class="nc" id="L215">    }</span>
+
+    private void loadAlbums() {
+<span class="nc" id="L218">        NodeList albumNodes = xmlHandler.parseXMLFile(ALBUMS_FILE_PATH);</span>
+<span class="nc bnc" id="L219" title="All 2 branches missed.">        if (albumNodes == null) return;</span>
+
+<span class="nc bnc" id="L221" title="All 2 branches missed.">        for (int i = 0; i &lt; albumNodes.getLength(); i++) {</span>
+<span class="nc bnc" id="L222" title="All 2 branches missed.">            if (albumNodes.item(i).getNodeType() == Node.ELEMENT_NODE) {</span>
+<span class="nc" id="L223">                Element albumElement = (Element) albumNodes.item(i);</span>
+<span class="nc bnc" id="L224" title="All 2 branches missed.">                if (albumElement.getNodeName().equals(&quot;album&quot;)) {</span>
+                    try {
+<span class="nc" id="L226">                        this.addAlbum(new Album(albumElement));</span>
+<span class="nc" id="L227">                    } catch (Exception ex) {</span>
+<span class="nc" id="L228">                        System.out.println(&quot;Something is wrong with the XML album element&quot;);</span>
+<span class="nc" id="L229">                    }</span>
+                }
+            }
+        }
+<span class="nc" id="L233">    }</span>
+
+    private void loadPlaylists() {
+<span class="nc" id="L236">        NodeList playlistNodes = xmlHandler.parseXMLFile(PLAYLISTS_FILE_PATH);</span>
+<span class="nc bnc" id="L237" title="All 2 branches missed.">        if (playlistNodes == null) return;</span>
+
+<span class="nc bnc" id="L239" title="All 2 branches missed.">        for (int i = 0; i &lt; playlistNodes.getLength(); i++) {</span>
+<span class="nc bnc" id="L240" title="All 2 branches missed.">            if (playlistNodes.item(i).getNodeType() == Node.ELEMENT_NODE) {</span>
+<span class="nc" id="L241">                Element playlistElement = (Element) playlistNodes.item(i);</span>
+<span class="nc bnc" id="L242" title="All 2 branches missed.">                if (playlistElement.getNodeName().equals(&quot;playlist&quot;)) {</span>
+                    try {
+<span class="nc" id="L244">                        this.addPlaylist(new PlayList(playlistElement));</span>
+<span class="nc" id="L245">                    } catch (Exception ex) {</span>
+<span class="nc" id="L246">                        System.out.println(&quot;Something is wrong with the XML playlist element&quot;);</span>
+<span class="nc" id="L247">                    }</span>
+                }
+            }
+        }
+<span class="nc" id="L251">    }</span>
+
+    private void loadElements() {
+<span class="nc" id="L254">        NodeList audioelementsNodes = xmlHandler.parseXMLFile(ELEMENTS_FILE_PATH);</span>
+<span class="nc bnc" id="L255" title="All 2 branches missed.">        if (audioelementsNodes == null) return;</span>
+
+<span class="nc bnc" id="L257" title="All 2 branches missed.">        for (int i = 0; i &lt; audioelementsNodes.getLength(); i++) {</span>
+<span class="nc bnc" id="L258" title="All 2 branches missed.">            if (audioelementsNodes.item(i).getNodeType() == Node.ELEMENT_NODE) {</span>
+<span class="nc" id="L259">                Element audioElement = (Element) audioelementsNodes.item(i);</span>
+<span class="nc bnc" id="L260" title="All 2 branches missed.">                if (audioElement.getNodeName().equals(&quot;song&quot;)) {</span>
+                    try {
+<span class="nc" id="L262">                        AudioElement newSong = new Song(audioElement);</span>
+<span class="nc" id="L263">                        this.addElement(newSong);</span>
+<span class="nc" id="L264">                    } catch (Exception ex) {</span>
+<span class="nc" id="L265">                        System.out.println(&quot;Something is wrong with the XML song element&quot;);</span>
+<span class="nc" id="L266">                    }</span>
+                }
+<span class="nc bnc" id="L268" title="All 2 branches missed.">                if (audioElement.getNodeName().equals(&quot;audiobook&quot;)) {</span>
+                    try {
+<span class="nc" id="L270">                        AudioElement newAudioBook = new AudioBook(audioElement);</span>
+<span class="nc" id="L271">                        this.addElement(newAudioBook);</span>
+<span class="nc" id="L272">                    } catch (Exception ex) {</span>
+<span class="nc" id="L273">                        System.out.println(&quot;Something is wrong with the XML audiobook element&quot;);</span>
+<span class="nc" id="L274">                    }</span>
+                }
+            }
+        }
+<span class="nc" id="L278">    }</span>
+
+
+    public void saveAlbums() {
+<span class="nc" id="L282">        Document document = xmlHandler.createXMLDocument();</span>
+<span class="nc bnc" id="L283" title="All 2 branches missed.">        if (document == null) return;</span>
+
+        // root element
+<span class="nc" id="L286">        Element root = document.createElement(&quot;albums&quot;);</span>
+<span class="nc" id="L287">        document.appendChild(root);</span>
+
+        //save all albums
+<span class="nc bnc" id="L290" title="All 2 branches missed.">        for (Iterator&lt;Album&gt; albumsIter = this.albums(); albumsIter.hasNext(); ) {</span>
+<span class="nc" id="L291">            Album currentAlbum = albumsIter.next();</span>
+<span class="nc" id="L292">            currentAlbum.createXMLElement(document, root);</span>
+<span class="nc" id="L293">        }</span>
+<span class="nc" id="L294">        xmlHandler.createXMLFile(document, ALBUMS_FILE_PATH);</span>
+<span class="nc" id="L295">    }</span>
+
+    public void savePlayLists() {
+<span class="nc" id="L298">        Document document = xmlHandler.createXMLDocument();</span>
+<span class="nc bnc" id="L299" title="All 2 branches missed.">        if (document == null) return;</span>
+
+        // root element
+<span class="nc" id="L302">        Element root = document.createElement(&quot;playlists&quot;);</span>
+<span class="nc" id="L303">        document.appendChild(root);</span>
+
+        //save all playlists
+<span class="nc bnc" id="L306" title="All 2 branches missed.">        for (Iterator&lt;PlayList&gt; playlistsIter = this.playlists(); playlistsIter.hasNext(); ) {</span>
+<span class="nc" id="L307">            PlayList currentPlayList = playlistsIter.next();</span>
+<span class="nc" id="L308">            currentPlayList.createXMLElement(document, root);</span>
+<span class="nc" id="L309">        }</span>
+<span class="nc" id="L310">        xmlHandler.createXMLFile(document, PLAYLISTS_FILE_PATH);</span>
+<span class="nc" id="L311">    }</span>
+
+    public void saveElements() {
+<span class="nc" id="L314">        Document document = xmlHandler.createXMLDocument();</span>
+<span class="nc bnc" id="L315" title="All 2 branches missed.">        if (document == null) return;</span>
+
+        // root element
+<span class="nc" id="L318">        Element root = document.createElement(&quot;elements&quot;);</span>
+<span class="nc" id="L319">        document.appendChild(root);</span>
+
+        //save all AudioElements
+<span class="nc bnc" id="L322" title="All 2 branches missed.">        for (AudioElement currentElement : elements) {</span>
+
+<span class="nc bnc" id="L324" title="All 2 branches missed.">            if (currentElement instanceof Song) {</span>
+<span class="nc" id="L325">                currentElement.createXMLElement(document, root);</span>
+            }
+<span class="nc bnc" id="L327" title="All 2 branches missed.">            if (currentElement instanceof AudioBook) {</span>
+<span class="nc" id="L328">                currentElement.createXMLElement(document, root);</span>
+            }
+<span class="nc" id="L330">        }</span>
+<span class="nc" id="L331">        xmlHandler.createXMLFile(document, ELEMENTS_FILE_PATH);</span>
+<span class="nc" id="L332">    }</span>
+    
+    public void getAudioElement(List&lt;AudioElement&gt; audios, String elementTitle) throws NoAlbumFoundException, UnsupportedAudioFileException, IOException, LineUnavailableException {
+<span class="nc bnc" id="L335" title="All 2 branches missed.">        for (AudioElement el : audios) {</span>
+<span class="nc bnc" id="L336" title="All 2 branches missed.">            if (el.getTitle().equalsIgnoreCase(elementTitle)) {</span>
+<span class="nc" id="L337">                el.manageAudioElement();</span>
+            }
+<span class="nc" id="L339">        }</span>
+
+<span class="nc" id="L341">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

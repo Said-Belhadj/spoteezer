@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Song.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">spoteezer</a> &gt; <a href="index.source.html" class="el_package">musichub.business</a> &gt; <span class="el_source">Song.java</span></div><h1>Song.java</h1><pre class="source lang-java linenums">package musichub.business;
+
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+
+
+public class Song extends AudioElement {
+    private Genre genre;
+
+    public Song(String title, String artist, int length, String uid, String content, String genre) {
+<span class="nc" id="L11">        super(title, artist, length, uid, content);</span>
+<span class="nc" id="L12">        this.setGenre(genre);</span>
+<span class="nc" id="L13">    }</span>
+
+    public Song(String title, String artist, int length, String content, String genre) {
+<span class="nc" id="L16">        super(title, artist, length, content);</span>
+<span class="nc" id="L17">        this.setGenre(genre);</span>
+<span class="nc" id="L18">    }</span>
+
+    public Song(Element xmlElement) {
+<span class="nc" id="L21">        super(xmlElement);</span>
+<span class="nc" id="L22">        this.setGenre(xmlElement.getElementsByTagName(&quot;genre&quot;).item(0).getTextContent());</span>
+<span class="nc" id="L23">    }</span>
+
+    public String getGenre() {
+<span class="nc" id="L26">        return genre.getGenre();</span>
+    }
+
+    public void setGenre(String genre) {
+<span class="nc bnc" id="L30" title="All 6 branches missed.">        switch (genre.toLowerCase()) {</span>
+<span class="nc" id="L31">            default -&gt; this.genre = Genre.JAZZ;</span>
+<span class="nc" id="L32">            case &quot;classic&quot; -&gt; this.genre = Genre.CLASSIC;</span>
+<span class="nc" id="L33">            case &quot;hiphop&quot; -&gt; this.genre = Genre.HIPHOP;</span>
+<span class="nc" id="L34">            case &quot;rock&quot; -&gt; this.genre = Genre.ROCK;</span>
+<span class="nc" id="L35">            case &quot;pop&quot; -&gt; this.genre = Genre.POP;</span>
+<span class="nc" id="L36">            case &quot;rap&quot; -&gt; this.genre = Genre.RAP;</span>
+        }
+<span class="nc" id="L38">    }</span>
+
+    public String toString() {
+<span class="nc" id="L41">        return super.toString() + &quot;, Genre = &quot; + getGenre() + &quot;\n&quot;;</span>
+    }
+
+    public void createXMLElement(Document document, Element parentElement) {
+        // song element
+<span class="nc" id="L46">        Element song = document.createElement(&quot;song&quot;);</span>
+
+<span class="nc" id="L48">        super.createXMLElement(document, song);</span>
+
+<span class="nc" id="L50">        Element genreElement = document.createElement(&quot;genre&quot;);</span>
+<span class="nc" id="L51">        genreElement.appendChild(document.createTextNode(genre.getGenre()));</span>
+<span class="nc" id="L52">        song.appendChild(genreElement);</span>
+
+<span class="nc" id="L54">        parentElement.appendChild(song);</span>
+<span class="nc" id="L55">    }</span>
+    
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>
