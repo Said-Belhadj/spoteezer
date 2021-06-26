@@ -26,6 +26,13 @@ public final class LogHandler {
         throw new AssertionError("You just can't instantiate this class.");
     }
 
+    /**
+     * Method that writes a log message to spoteezer.log
+     *
+     * @param msg  the message to write
+     * @param type the type of log
+     * @throws IOException if the file's not there
+     */
     public static void write(String msg, String type) throws IOException {
 
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
@@ -42,6 +49,11 @@ public final class LogHandler {
 
     }
 
+    /**
+     * Method that prints the content of spoteezer.log
+     *
+     * @throws IOException if the file's not there
+     */
     public static void read() throws IOException {
         Path fileName = Path.of("log/spoteezer.log");
 
