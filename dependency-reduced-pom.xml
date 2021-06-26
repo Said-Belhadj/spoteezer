@@ -11,16 +11,16 @@
                 <artifactId>maven-shade-plugin</artifactId>
                 <version>3.2.4</version>
                 <executions>
-          <execution>
-            <phase>package</phase>
-            <goals>
-              <goal>shade</goal>
-            </goals>
-            <configuration>
-              <transformers>
-                <transformer>
-                  <mainClass>musichub.main.Main</mainClass>
-                </transformer>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                        <configuration>
+                            <transformers>
+                                <transformer>
+                                    <mainClass>musichub.main.Main</mainClass>
+                                </transformer>
               </transformers>
             </configuration>
           </execution>
@@ -49,15 +49,15 @@
           </execution>
         </executions>
       </plugin>
-      <plugin>
-        <artifactId>maven-compiler-plugin</artifactId>
-          <configuration>
-              <source>16</source>
-              <target>16</target>
-          </configuration>
-      </plugin>
-    </plugins>
-  </build>
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>16</source>
+                    <target>16</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
     <properties>
         <maven.compiler.release>16</maven.compiler.release>
         <maven.compiler.target>16</maven.compiler.target>
