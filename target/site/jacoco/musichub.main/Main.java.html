@@ -94,7 +94,7 @@ import static musichub.util.PathValidation.isPathValid;
 <span class="nc" id="L94">                    System.out.println(&quot;Song content: &quot;);</span>
 <span class="nc" id="L95">                    String content = scan.nextLine();</span>
 <span class="nc bnc" id="L96" title="All 2 branches missed.">                    if (!isPathValid(content)) {</span>
-<span class="nc" id="L97">                        String logMsg = &quot;The music file was not found with the path you've provided.&quot;;</span>
+<span class="nc" id="L97">                        String logMsg = &quot;The music file was not found with the path you've provided or the extension is not .wav&quot;;</span>
 <span class="nc" id="L98">                        LogHandler.write(logMsg, &quot;WARNING&quot;); //write a line in the log file</span>
 <span class="nc" id="L99">                        System.out.println(logMsg + &quot;\nType h for available commands&quot;);</span>
 <span class="nc" id="L100">                        choice = scan.nextLine();</span>
