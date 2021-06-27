@@ -11,10 +11,12 @@ import java.util.List;
 import java.util.Scanner;
 
 import static musichub.util.PathValidation.isPathValid;
+import static musichub.util.Policy.showTerm;
 
 public class Main {
     public static void main(String[] args) throws UnsupportedAudioFileException, IOException, LineUnavailableException, NoAlbumFoundException {
 
+        showTerm();
 
         MusicHub theHub = new MusicHub();
 
