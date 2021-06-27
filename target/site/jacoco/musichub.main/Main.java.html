@@ -13,264 +13,271 @@ import java.util.Scanner;
 import static musichub.util.PathValidation.isPathValid;
 
 <span class="nc" id="L15">public class Main {</span>
-    public static void main(String[] args) throws UnsupportedAudioFileException, IOException, LineUnavailableException {
+    public static void main(String[] args) throws UnsupportedAudioFileException, IOException, LineUnavailableException, NoAlbumFoundException {
 
-<span class="nc" id="L18">        MusicHub theHub = new MusicHub();</span>
+<span class="nc" id="L18"></span>
+        MusicHub theHub = new MusicHub();
+<span class="nc" id="L20"></span>
+        System.out.println(&quot;Type h for available commands&quot;);
 
-<span class="nc" id="L20">        System.out.println(&quot;Type h for available commands&quot;);</span>
-
-
-<span class="nc" id="L23">        Scanner scan = new Scanner(System.in);</span>
-<span class="nc" id="L24">        String choice = scan.nextLine();</span>
+<span class="nc" id="L23"></span>
+<span class="nc" id="L24">        Scanner scan = new Scanner(System.in);</span>
+        String choice = scan.nextLine();
 
         String albumTitle;
-
-<span class="nc bnc" id="L28" title="All 2 branches missed.">        if (choice.length() == 0) System.exit(0);</span>
-
-<span class="nc bnc" id="L30" title="All 2 branches missed.">        while (!choice.equals(&quot;&quot;)) { //if the user puts nothing, quit the loop/system</span>
-<span class="nc bnc" id="L31" title="All 15 branches missed.">            switch (choice.charAt(0)) {</span>
-                case 'q': //added the option directly in the switch instead of the loop
-<span class="nc" id="L33">                    System.exit(0);</span>
-                case 'h':
-<span class="nc" id="L35">                    printAvailableCommands();</span>
-<span class="nc" id="L36">                    choice = scan.nextLine();</span>
-<span class="nc" id="L37">                    break;</span>
+<span class="nc bnc" id="L28" title="All 2 branches missed."></span>
+        if (choice.length() == 0) System.exit(0);
+<span class="nc bnc" id="L30" title="All 2 branches missed."></span>
+<span class="nc bnc" id="L31" title="All 15 branches missed.">        while (!choice.equals(&quot;&quot;)) { //if the user puts nothing, quit the loop/system</span>
+            switch (choice.charAt(0)) {
+<span class="nc" id="L33">                case 'q': //added the option directly in the switch instead of the loop</span>
+                    System.exit(0);
+<span class="nc" id="L35">                case 'h':</span>
+<span class="nc" id="L36">                    printAvailableCommands();</span>
+<span class="nc" id="L37">                    choice = scan.nextLine();</span>
+                    break;
                 case 't':
-                    //album titles, ordered by date
-<span class="nc" id="L40">                    System.out.println(theHub.getAlbumsTitlesSortedByDate());</span>
-<span class="nc" id="L41">                    printAvailableCommands();</span>
-<span class="nc" id="L42">                    choice = scan.nextLine();</span>
-<span class="nc" id="L43">                    break;</span>
+<span class="nc" id="L40">                    //album titles, ordered by date</span>
+<span class="nc" id="L41">                    System.out.println(theHub.getAlbumsTitlesSortedByDate());</span>
+<span class="nc" id="L42">                    printAvailableCommands();</span>
+<span class="nc" id="L43">                    choice = scan.nextLine();</span>
+                    break;
                 case 'g':
-                    //songs of an album, sorted by genre
-<span class="nc" id="L46">                    System.out.println(&quot;Songs of an album sorted by genre will be displayed; enter the album name, available albums are:&quot;);</span>
-<span class="nc" id="L47">                    System.out.println(theHub.getAlbumsTitlesSortedByDate());</span>
-
-<span class="nc" id="L49">                    albumTitle = scan.nextLine();</span>
-                    try {
-<span class="nc" id="L51">                    	List&lt;Song&gt; songs = theHub.getAlbumSongsSortedByGenre(albumTitle);</span>
-<span class="nc" id="L52">                        System.out.println(songs);</span>
-<span class="nc" id="L53">                    } catch (NoAlbumFoundException ex) {</span>
-<span class="nc" id="L54">                        System.out.println(&quot;No album found with the requested title &quot; + ex.getMessage());</span>
-<span class="nc" id="L55">                    }</span>
-<span class="nc" id="L56">                    printAvailableCommands();</span>
-<span class="nc" id="L57">                    choice = scan.nextLine();</span>
-<span class="nc" id="L58">                    break;</span>
+<span class="nc" id="L46">                    //songs of an album, sorted by genre</span>
+<span class="nc" id="L47">                    System.out.println(&quot;Songs of an album sorted by genre will be displayed; enter the album name, available albums are:&quot;);</span>
+                    System.out.println(theHub.getAlbumsTitlesSortedByDate());
+<span class="nc" id="L49"></span>
+                    albumTitle = scan.nextLine();
+<span class="nc" id="L51">                    try {</span>
+<span class="nc" id="L52">                    	List&lt;Song&gt; songs = theHub.getAlbumSongsSortedByGenre(albumTitle);</span>
+<span class="nc" id="L53">                        System.out.println(songs);</span>
+<span class="nc" id="L54">                    } catch (NoAlbumFoundException ex) {</span>
+<span class="nc" id="L55">                        System.out.println(&quot;No album found with the requested title &quot; + ex.getMessage());</span>
+<span class="nc" id="L56">                    }</span>
+<span class="nc" id="L57">                    printAvailableCommands();</span>
+<span class="nc" id="L58">                    choice = scan.nextLine();</span>
+                    break;
                 case 'd':
-                    //songs of an album
-<span class="nc" id="L61">                    System.out.println(&quot;Songs of an album will be displayed; enter the album name, available albums are:&quot;);</span>
-<span class="nc" id="L62">                    System.out.println(theHub.getAlbumsTitlesSortedByDate());</span>
-
-<span class="nc" id="L64">                    albumTitle = scan.nextLine();</span>
-                    try {
-<span class="nc" id="L66">                    	List&lt;AudioElement&gt; songs = theHub.getAlbumSongs(albumTitle);</span>
-<span class="nc" id="L67">                        System.out.println(theHub.getAlbumSongs(albumTitle));</span>
-<span class="nc" id="L68">                        String song = scan.nextLine();</span>
-<span class="nc" id="L69">                        theHub.getAudioElement(songs, song);</span>
-<span class="nc" id="L70">                    } catch (NoAlbumFoundException ex) {</span>
-<span class="nc" id="L71">                        System.out.println(&quot;No album found with the requested title &quot; + ex.getMessage());</span>
-<span class="nc" id="L72">                    }</span>
-<span class="nc" id="L73">                    printAvailableCommands();</span>
-<span class="nc" id="L74">                    choice = scan.nextLine();</span>
-<span class="nc" id="L75">                    break;</span>
+<span class="nc" id="L61">                    //songs of an album</span>
+<span class="nc" id="L62">                    System.out.println(&quot;Songs of an album will be displayed; enter the album name, available albums are:&quot;);</span>
+                    System.out.println(theHub.getAlbumsTitlesSortedByDate());
+<span class="nc" id="L64"></span>
+                    albumTitle = scan.nextLine();
+<span class="nc" id="L66">                    try {</span>
+<span class="nc" id="L67">                    	List&lt;AudioElement&gt; songs = theHub.getAlbumSongs(albumTitle);</span>
+<span class="nc" id="L68">                        System.out.println(theHub.getAlbumSongs(albumTitle));</span>
+<span class="nc" id="L69">                        String song = scan.nextLine();</span>
+<span class="nc" id="L70">                        theHub.getAudioElement(songs, song);</span>
+<span class="nc" id="L71">                    } catch (NoAlbumFoundException ex) {</span>
+<span class="nc" id="L72">                        System.out.println(&quot;No album found with the requested title &quot; + ex.getMessage());</span>
+<span class="nc" id="L73">                    }</span>
+<span class="nc" id="L74">                    printAvailableCommands();</span>
+<span class="nc" id="L75">                    choice = scan.nextLine();</span>
+                    break;
                 case 'u':
-                    //audiobooks ordered by author
-<span class="nc" id="L78">                    System.out.println(theHub.getAudiobooksTitlesSortedByAuthor());</span>
-<span class="nc" id="L79">                    printAvailableCommands();</span>
-<span class="nc" id="L80">                    choice = scan.nextLine();</span>
-<span class="nc" id="L81">                    break;</span>
+<span class="nc" id="L78">                    //audiobooks ordered by author</span>
+<span class="nc" id="L79">                    System.out.println(theHub.getAudiobooksTitlesSortedByAuthor());</span>
+<span class="nc" id="L80">                    printAvailableCommands();</span>
+<span class="nc" id="L81">                    choice = scan.nextLine();</span>
+                    break;
                 case 'c':
-                    // add a new song
-<span class="nc" id="L84">                    System.out.println(&quot;Enter a new song: &quot;);</span>
-<span class="nc" id="L85">                    System.out.println(&quot;Song title: &quot;);</span>
-<span class="nc" id="L86">                    String title = scan.nextLine();</span>
-<span class="nc" id="L87">                    System.out.println(&quot;Song genre (jazz, classic, hiphop, rock, pop, rap):&quot;);</span>
-<span class="nc" id="L88">                    String genre = scan.nextLine();</span>
-<span class="nc" id="L89">                    System.out.println(&quot;Song artist: &quot;);</span>
-<span class="nc" id="L90">                    String artist = scan.nextLine();</span>
-<span class="nc" id="L91">                    System.out.println(&quot;Song length in seconds: &quot;);</span>
-<span class="nc" id="L92">                    int length = Integer.parseInt(scan.nextLine());</span>
-
-<span class="nc" id="L94">                    System.out.println(&quot;Song content: &quot;);</span>
-<span class="nc" id="L95">                    String content = scan.nextLine();</span>
-<span class="nc bnc" id="L96" title="All 2 branches missed.">                    if (!isPathValid(content)) {</span>
-<span class="nc" id="L97">                        String logMsg = &quot;The music file was not found with the path you've provided or the extension is not .wav&quot;;</span>
-<span class="nc" id="L98">                        LogHandler.write(logMsg, &quot;WARNING&quot;); //write a line in the log file</span>
-<span class="nc" id="L99">                        System.out.println(logMsg + &quot;\nType h for available commands&quot;);</span>
-<span class="nc" id="L100">                        choice = scan.nextLine();</span>
-<span class="nc" id="L101">                        break;</span>
+<span class="nc" id="L84">                    // add a new song</span>
+<span class="nc" id="L85">                    System.out.println(&quot;Enter a new song: &quot;);</span>
+<span class="nc" id="L86">                    System.out.println(&quot;Song title: &quot;);</span>
+<span class="nc" id="L87">                    String title = scan.nextLine();</span>
+<span class="nc" id="L88">                    System.out.println(&quot;Song genre (jazz, classic, hiphop, rock, pop, rap):&quot;);</span>
+<span class="nc" id="L89">                    String genre = scan.nextLine();</span>
+<span class="nc" id="L90">                    System.out.println(&quot;Song artist: &quot;);</span>
+<span class="nc" id="L91">                    String artist = scan.nextLine();</span>
+<span class="nc" id="L92">                    System.out.println(&quot;Song length in seconds: &quot;);</span>
+                    int length = Integer.parseInt(scan.nextLine());
+<span class="nc" id="L94"></span>
+<span class="nc" id="L95">                    System.out.println(&quot;Song content: &quot;);</span>
+<span class="nc bnc" id="L96" title="All 2 branches missed.">                    String content = scan.nextLine();</span>
+<span class="nc" id="L97">                    if (!isPathValid(content)) {</span>
+<span class="nc" id="L98">                        String logMsg = &quot;The music file was not found with the path you've provided or the extension is not .wav&quot;;</span>
+<span class="nc" id="L99">                        LogHandler.write(logMsg, &quot;WARNING&quot;); //write a line in the log file</span>
+<span class="nc" id="L100">                        System.out.println(logMsg + &quot;\nType h for available commands&quot;);</span>
+<span class="nc" id="L101">                        choice = scan.nextLine();</span>
+                        break;
                     }
-
-<span class="nc" id="L104">                    Song s = new Song(title, artist, length, content, genre);</span>
-<span class="nc" id="L105">                    theHub.addElement(s);</span>
-<span class="nc" id="L106">                    System.out.println(&quot;New element list: &quot;);</span>
-<span class="nc" id="L107">                    Iterator&lt;AudioElement&gt; it = theHub.elements();</span>
-<span class="nc bnc" id="L108" title="All 2 branches missed.">                    while (it.hasNext()) System.out.println(it.next().getTitle());</span>
-<span class="nc" id="L109">                    System.out.println(&quot;Song created!&quot;);</span>
-<span class="nc" id="L110">                    printAvailableCommands();</span>
-<span class="nc" id="L111">                    choice = scan.nextLine();</span>
-<span class="nc" id="L112">                    break;</span>
+<span class="nc" id="L104"></span>
+<span class="nc" id="L105">                    Song s = new Song(title, artist, length, content, genre);</span>
+<span class="nc" id="L106">                    theHub.addElement(s);</span>
+<span class="nc" id="L107">                    System.out.println(&quot;New element list: &quot;);</span>
+<span class="nc bnc" id="L108" title="All 2 branches missed.">                    Iterator&lt;AudioElement&gt; it = theHub.elements();</span>
+<span class="nc" id="L109">                    while (it.hasNext()) System.out.println(it.next().getTitle());</span>
+<span class="nc" id="L110">                    System.out.println(&quot;Song created!&quot;);</span>
+<span class="nc" id="L111">                    printAvailableCommands();</span>
+<span class="nc" id="L112">                    choice = scan.nextLine();</span>
+                    break;
                 case 'a':
-                    // add a new album
-<span class="nc" id="L115">                    System.out.println(&quot;Enter a new album: &quot;);</span>
-<span class="nc" id="L116">                    System.out.println(&quot;Album title: &quot;);</span>
-<span class="nc" id="L117">                    String aTitle = scan.nextLine();</span>
-<span class="nc" id="L118">                    System.out.println(&quot;Album artist: &quot;);</span>
-<span class="nc" id="L119">                    String aArtist = scan.nextLine();</span>
-<span class="nc" id="L120">                    System.out.println(&quot;Album length in seconds: &quot;);</span>
-<span class="nc" id="L121">                    int aLength = Integer.parseInt(scan.nextLine());</span>
-<span class="nc" id="L122">                    System.out.println(&quot;Album date as YYYY-DD-MM: &quot;);</span>
-<span class="nc" id="L123">                    String aDate = scan.nextLine();</span>
-<span class="nc" id="L124">                    Album a = new Album(aTitle, aArtist, aLength, aDate);</span>
-<span class="nc" id="L125">                    theHub.addAlbum(a);</span>
-<span class="nc" id="L126">                    System.out.println(&quot;New list of albums: &quot;);</span>
-<span class="nc" id="L127">                    Iterator&lt;Album&gt; ita = theHub.albums();</span>
-<span class="nc bnc" id="L128" title="All 2 branches missed.">                    while (ita.hasNext()) System.out.println(ita.next().getTitle());</span>
-<span class="nc" id="L129">                    System.out.println(&quot;Album created!&quot;);</span>
-<span class="nc" id="L130">                    printAvailableCommands();</span>
-<span class="nc" id="L131">                    choice = scan.nextLine();</span>
-<span class="nc" id="L132">                    break;</span>
+<span class="nc" id="L115">                    // add a new album</span>
+<span class="nc" id="L116">                    System.out.println(&quot;Enter a new album: &quot;);</span>
+<span class="nc" id="L117">                    System.out.println(&quot;Album title: &quot;);</span>
+<span class="nc" id="L118">                    String aTitle = scan.nextLine();</span>
+<span class="nc" id="L119">                    System.out.println(&quot;Album artist: &quot;);</span>
+<span class="nc" id="L120">                    String aArtist = scan.nextLine();</span>
+<span class="nc" id="L121">                    System.out.println(&quot;Album length in seconds: &quot;);</span>
+<span class="nc" id="L122">                    int aLength = Integer.parseInt(scan.nextLine());</span>
+<span class="nc" id="L123">                    System.out.println(&quot;Album date as YYYY-DD-MM: &quot;);</span>
+<span class="nc" id="L124">                    String aDate = scan.nextLine();</span>
+<span class="nc" id="L125">                    Album a = new Album(aTitle, aArtist, aLength, aDate);</span>
+<span class="nc" id="L126">                    theHub.addAlbum(a);</span>
+<span class="nc" id="L127">                    System.out.println(&quot;New list of albums: &quot;);</span>
+<span class="nc bnc" id="L128" title="All 2 branches missed.">                    Iterator&lt;Album&gt; ita = theHub.albums();</span>
+<span class="nc" id="L129">                    while (ita.hasNext()) System.out.println(ita.next().getTitle());</span>
+<span class="nc" id="L130">                    System.out.println(&quot;Album created!&quot;);</span>
+<span class="nc" id="L131">                    printAvailableCommands();</span>
+<span class="nc" id="L132">                    choice = scan.nextLine();</span>
+                    break;
                 case '+':
-                    //add a song to an album:
-<span class="nc" id="L135">                    System.out.println(&quot;Add an existing song to an existing album&quot;);</span>
-<span class="nc" id="L136">                    System.out.println(&quot;Type the name of the song you wish to add. Available songs: &quot;);</span>
-<span class="nc" id="L137">                    Iterator&lt;AudioElement&gt; itae = theHub.elements();</span>
-<span class="nc bnc" id="L138" title="All 2 branches missed.">                    while (itae.hasNext()) {</span>
-<span class="nc" id="L139">                        AudioElement ae = itae.next();</span>
-<span class="nc bnc" id="L140" title="All 2 branches missed.">                        if (ae instanceof Song) System.out.println(ae.getTitle());</span>
-<span class="nc" id="L141">                    }</span>
-<span class="nc" id="L142">                    String songTitle = scan.nextLine();</span>
-
-<span class="nc" id="L144">                    System.out.println(&quot;Type the name of the album you wish to enrich. Available albums: &quot;);</span>
-<span class="nc" id="L145">                    Iterator&lt;Album&gt; ait = theHub.albums();</span>
-<span class="nc bnc" id="L146" title="All 2 branches missed.">                    while (ait.hasNext()) {</span>
-<span class="nc" id="L147">                        Album al = ait.next();</span>
-<span class="nc" id="L148">                        System.out.println(al.getTitle());</span>
-<span class="nc" id="L149">                    }</span>
-<span class="nc" id="L150">                    String titleAlbum = scan.nextLine();</span>
-                    try {
-<span class="nc" id="L152">                        theHub.addElementToAlbum(songTitle, titleAlbum);</span>
-<span class="nc" id="L153">                    } catch (NoAlbumFoundException | NoElementFoundException ex) {</span>
-<span class="nc" id="L154">                        System.out.println(ex.getMessage());</span>
-<span class="nc" id="L155">                    }</span>
-<span class="nc" id="L156">                    System.out.println(&quot;Song added to the album!&quot;);</span>
-<span class="nc" id="L157">                    printAvailableCommands();</span>
-<span class="nc" id="L158">                    choice = scan.nextLine();</span>
-<span class="nc" id="L159">                    break;</span>
+<span class="nc" id="L135">                    //add a song to an album:</span>
+<span class="nc" id="L136">                    System.out.println(&quot;Add an existing song to an existing album&quot;);</span>
+<span class="nc" id="L137">                    System.out.println(&quot;Type the name of the song you wish to add. Available songs: &quot;);</span>
+<span class="nc bnc" id="L138" title="All 2 branches missed.">                    Iterator&lt;AudioElement&gt; itae = theHub.elements();</span>
+<span class="nc" id="L139">                    while (itae.hasNext()) {</span>
+<span class="nc bnc" id="L140" title="All 2 branches missed.">                        AudioElement ae = itae.next();</span>
+<span class="nc" id="L141">                        if (ae instanceof Song) System.out.println(ae.getTitle());</span>
+<span class="nc" id="L142">                    }</span>
+                    String songTitle = scan.nextLine();
+<span class="nc" id="L144"></span>
+<span class="nc" id="L145">                    System.out.println(&quot;Type the name of the album you wish to enrich. Available albums: &quot;);</span>
+<span class="nc bnc" id="L146" title="All 2 branches missed.">                    Iterator&lt;Album&gt; ait = theHub.albums();</span>
+<span class="nc" id="L147">                    while (ait.hasNext()) {</span>
+<span class="nc" id="L148">                        Album al = ait.next();</span>
+<span class="nc" id="L149">                        System.out.println(al.getTitle());</span>
+<span class="nc" id="L150">                    }</span>
+                    String titleAlbum = scan.nextLine();
+<span class="nc" id="L152">                    try {</span>
+<span class="nc" id="L153">                        theHub.addElementToAlbum(songTitle, titleAlbum);</span>
+<span class="nc" id="L154">                    } catch (NoAlbumFoundException | NoElementFoundException ex) {</span>
+<span class="nc" id="L155">                        System.out.println(ex.getMessage());</span>
+<span class="nc" id="L156">                    }</span>
+<span class="nc" id="L157">                    System.out.println(&quot;Song added to the album!&quot;);</span>
+<span class="nc" id="L158">                    printAvailableCommands();</span>
+<span class="nc" id="L159">                    choice = scan.nextLine();</span>
+                    break;
                 case 'l':
-                    // add a new audiobook
-<span class="nc" id="L162">                    System.out.println(&quot;Enter a new audiobook: &quot;);</span>
-<span class="nc" id="L163">                    System.out.println(&quot;AudioBook title: &quot;);</span>
-<span class="nc" id="L164">                    String bTitle = scan.nextLine();</span>
-<span class="nc" id="L165">                    System.out.println(&quot;AudioBook category (youth, novel, theater, documentary, speech)&quot;);</span>
-<span class="nc" id="L166">                    String bCategory = scan.nextLine();</span>
-<span class="nc" id="L167">                    System.out.println(&quot;AudioBook artist: &quot;);</span>
-<span class="nc" id="L168">                    String bArtist = scan.nextLine();</span>
-<span class="nc" id="L169">                    System.out.println(&quot;AudioBook length in seconds: &quot;);</span>
-<span class="nc" id="L170">                    int bLength = Integer.parseInt(scan.nextLine());</span>
-<span class="nc" id="L171">                    System.out.println(&quot;AudioBook content: &quot;);</span>
-<span class="nc" id="L172">                    String bContent = scan.nextLine();</span>
-<span class="nc" id="L173">                    System.out.println(&quot;AudioBook language (french, english, italian, spanish, german)&quot;);</span>
-<span class="nc" id="L174">                    String bLanguage = scan.nextLine();</span>
-<span class="nc" id="L175">                    AudioBook b = new AudioBook(bTitle, bArtist, bLength, bContent, bLanguage, bCategory);</span>
-<span class="nc" id="L176">                    theHub.addElement(b);</span>
-<span class="nc" id="L177">                    System.out.println(&quot;Audiobook created! New element list: &quot;);</span>
-<span class="nc" id="L178">                    Iterator&lt;AudioElement&gt; itl = theHub.elements();</span>
-<span class="nc bnc" id="L179" title="All 2 branches missed.">                    while (itl.hasNext()) System.out.println(itl.next().getTitle());</span>
-<span class="nc" id="L180">                    printAvailableCommands();</span>
-<span class="nc" id="L181">                    choice = scan.nextLine();</span>
-<span class="nc" id="L182">                    break;</span>
+<span class="nc" id="L162">                    // add a new audiobook</span>
+<span class="nc" id="L163">                    System.out.println(&quot;Enter a new audiobook: &quot;);</span>
+<span class="nc" id="L164">                    System.out.println(&quot;AudioBook title: &quot;);</span>
+<span class="nc" id="L165">                    String bTitle = scan.nextLine();</span>
+<span class="nc" id="L166">                    System.out.println(&quot;AudioBook category (youth, novel, theater, documentary, speech)&quot;);</span>
+<span class="nc" id="L167">                    String bCategory = scan.nextLine();</span>
+<span class="nc" id="L168">                    System.out.println(&quot;AudioBook artist: &quot;);</span>
+<span class="nc" id="L169">                    String bArtist = scan.nextLine();</span>
+<span class="nc" id="L170">                    System.out.println(&quot;AudioBook length in seconds: &quot;);</span>
+<span class="nc" id="L171">                    int bLength = Integer.parseInt(scan.nextLine());</span>
+<span class="nc" id="L172">                    System.out.println(&quot;AudioBook content: &quot;);</span>
+<span class="nc" id="L173">                    String bContent = scan.nextLine();</span>
+<span class="nc" id="L174">                    System.out.println(&quot;AudioBook language (french, english, italian, spanish, german)&quot;);</span>
+<span class="nc" id="L175">                    String bLanguage = scan.nextLine();</span>
+<span class="nc" id="L176">                    AudioBook b = new AudioBook(bTitle, bArtist, bLength, bContent, bLanguage, bCategory);</span>
+<span class="nc" id="L177">                    theHub.addElement(b);</span>
+<span class="nc" id="L178">                    System.out.println(&quot;Audiobook created! New element list: &quot;);</span>
+<span class="nc bnc" id="L179" title="All 2 branches missed.">                    Iterator&lt;AudioElement&gt; itl = theHub.elements();</span>
+<span class="nc" id="L180">                    while (itl.hasNext()) System.out.println(itl.next().getTitle());</span>
+<span class="nc" id="L181">                    printAvailableCommands();</span>
+<span class="nc" id="L182">                    choice = scan.nextLine();</span>
+                    break;
                 case 'p':
-                    //create a new playlist from existing elements
-<span class="nc" id="L185">                    System.out.println(&quot;Add an existing song or audiobook to a new playlist&quot;);</span>
-<span class="nc" id="L186">                    System.out.println(&quot;Existing playlists:&quot;);</span>
-<span class="nc" id="L187">                    Iterator&lt;PlayList&gt; itpl = theHub.playlists();</span>
-<span class="nc bnc" id="L188" title="All 2 branches missed.">                    while (itpl.hasNext()) {</span>
-<span class="nc" id="L189">                        PlayList pl = itpl.next();</span>
-<span class="nc" id="L190">                        System.out.println(pl.getTitle());</span>
-<span class="nc" id="L191">                    }</span>
-<span class="nc" id="L192">                    System.out.println(&quot;Type the name of the playlist you wish to create:&quot;);</span>
-<span class="nc" id="L193">                    String playListTitle = scan.nextLine();</span>
-<span class="nc" id="L194">                    PlayList pl = new PlayList(playListTitle);</span>
-<span class="nc" id="L195">                    theHub.addPlaylist(pl);</span>
-<span class="nc" id="L196">                    System.out.println(&quot;Available elements: &quot;);</span>
-
-<span class="nc" id="L198">                    Iterator&lt;AudioElement&gt; itael = theHub.elements();</span>
-<span class="nc bnc" id="L199" title="All 2 branches missed.">                    while (itael.hasNext()) {</span>
-<span class="nc" id="L200">                        AudioElement ae = itael.next();</span>
-<span class="nc" id="L201">                        System.out.println(ae.getTitle());</span>
-<span class="nc" id="L202">                    }</span>
-<span class="nc bnc" id="L203" title="All 2 branches missed.">                    while (choice.charAt(0) != 'n') {</span>
-<span class="nc" id="L204">                        System.out.println(&quot;Type the name of the audio element you wish to add or 'n' to exit:&quot;);</span>
-<span class="nc" id="L205">                        String elementTitle = scan.nextLine();</span>
-                        try {
-<span class="nc" id="L207">                            theHub.addElementToPlayList(elementTitle, playListTitle);</span>
-<span class="nc" id="L208">                        } catch (NoPlayListFoundException | NoElementFoundException ex) {</span>
-<span class="nc" id="L209">                            System.out.println(ex.getMessage());</span>
-<span class="nc" id="L210">                        }</span>
-
-<span class="nc" id="L212">                        System.out.println(&quot;Type y to add a new one, n to end&quot;);</span>
-<span class="nc" id="L213">                        choice = scan.nextLine();</span>
-<span class="nc" id="L214">                    }</span>
-<span class="nc" id="L215">                    System.out.println(&quot;Playlist created!&quot;);</span>
-<span class="nc" id="L216">                    printAvailableCommands();</span>
-<span class="nc" id="L217">                    choice = scan.nextLine();</span>
-<span class="nc" id="L218">                    break;</span>
+<span class="nc" id="L185">                    //create a new playlist from existing elements</span>
+<span class="nc" id="L186">                    System.out.println(&quot;Add an existing song or audiobook to a new playlist&quot;);</span>
+<span class="nc" id="L187">                    System.out.println(&quot;Existing playlists:&quot;);</span>
+<span class="nc bnc" id="L188" title="All 2 branches missed.">                    Iterator&lt;PlayList&gt; itpl = theHub.playlists();</span>
+<span class="nc" id="L189">                    while (itpl.hasNext()) {</span>
+<span class="nc" id="L190">                        PlayList pl = itpl.next();</span>
+<span class="nc" id="L191">                        System.out.println(pl.getTitle());</span>
+<span class="nc" id="L192">                    }</span>
+<span class="nc" id="L193">                    System.out.println(&quot;Type the name of the playlist you wish to create:&quot;);</span>
+<span class="nc" id="L194">                    String playListTitle = scan.nextLine();</span>
+<span class="nc" id="L195">                    PlayList pl = new PlayList(playListTitle);</span>
+<span class="nc" id="L196">                    theHub.addPlaylist(pl);</span>
+                    System.out.println(&quot;Available elements: &quot;);
+<span class="nc" id="L198"></span>
+<span class="nc bnc" id="L199" title="All 2 branches missed.">                    Iterator&lt;AudioElement&gt; itael = theHub.elements();</span>
+<span class="nc" id="L200">                    while (itael.hasNext()) {</span>
+<span class="nc" id="L201">                        AudioElement ae = itael.next();</span>
+<span class="nc" id="L202">                        System.out.println(ae.getTitle());</span>
+<span class="nc bnc" id="L203" title="All 2 branches missed.">                    }</span>
+<span class="nc" id="L204">                    while (choice.charAt(0) != 'n') {</span>
+<span class="nc" id="L205">                        System.out.println(&quot;Type the name of the audio element you wish to add or 'n' to exit:&quot;);</span>
+                        String elementTitle = scan.nextLine();
+<span class="nc" id="L207">                        try {</span>
+<span class="nc" id="L208">                            theHub.addElementToPlayList(elementTitle, playListTitle);</span>
+<span class="nc" id="L209">                        } catch (NoPlayListFoundException | NoElementFoundException ex) {</span>
+<span class="nc" id="L210">                            System.out.println(ex.getMessage());</span>
+                        }
+<span class="nc" id="L212"></span>
+<span class="nc" id="L213">                        System.out.println(&quot;Type y to add a new one, n to end&quot;);</span>
+<span class="nc" id="L214">                        choice = scan.nextLine();</span>
+<span class="nc" id="L215">                    }</span>
+<span class="nc" id="L216">                    System.out.println(&quot;Playlist created!&quot;);</span>
+<span class="nc" id="L217">                    printAvailableCommands();</span>
+<span class="nc" id="L218">                    choice = scan.nextLine();</span>
+                    break;
                 case '-':
-                    //delete a playlist
-<span class="nc" id="L221">                    System.out.println(&quot;Delete an existing playlist. Available playlists:&quot;);</span>
-<span class="nc" id="L222">                    Iterator&lt;PlayList&gt; itp = theHub.playlists();</span>
-<span class="nc bnc" id="L223" title="All 2 branches missed.">                    while (itp.hasNext()) {</span>
-<span class="nc" id="L224">                        PlayList p = itp.next();</span>
-<span class="nc" id="L225">                        System.out.println(p.getTitle());</span>
-<span class="nc" id="L226">                    }</span>
-<span class="nc" id="L227">                    String plTitle = scan.nextLine();</span>
-                    try {
-<span class="nc" id="L229">                        theHub.deletePlayList(plTitle);</span>
-<span class="nc" id="L230">                    } catch (NoPlayListFoundException ex) {</span>
-<span class="nc" id="L231">                        System.out.println(ex.getMessage());</span>
-<span class="nc" id="L232">                    }</span>
-<span class="nc" id="L233">                    System.out.println(&quot;Playlist deleted!&quot;);</span>
-<span class="nc" id="L234">                    printAvailableCommands();</span>
-<span class="nc" id="L235">                    choice = scan.nextLine();</span>
-<span class="nc" id="L236">                    break;</span>
+<span class="nc" id="L221">                    //delete a playlist</span>
+<span class="nc" id="L222">                    System.out.println(&quot;Delete an existing playlist. Available playlists:&quot;);</span>
+<span class="nc bnc" id="L223" title="All 2 branches missed.">                    Iterator&lt;PlayList&gt; itp = theHub.playlists();</span>
+<span class="nc" id="L224">                    while (itp.hasNext()) {</span>
+<span class="nc" id="L225">                        PlayList p = itp.next();</span>
+<span class="nc" id="L226">                        System.out.println(p.getTitle());</span>
+<span class="nc" id="L227">                    }</span>
+                    String plTitle = scan.nextLine();
+<span class="nc" id="L229">                    try {</span>
+<span class="nc" id="L230">                        theHub.deletePlayList(plTitle);</span>
+<span class="nc" id="L231">                    } catch (NoPlayListFoundException ex) {</span>
+<span class="nc" id="L232">                        System.out.println(ex.getMessage());</span>
+<span class="nc" id="L233">                    }</span>
+<span class="nc" id="L234">                    System.out.println(&quot;Playlist deleted!&quot;);</span>
+<span class="nc" id="L235">                    printAvailableCommands();</span>
+<span class="nc" id="L236">                    choice = scan.nextLine();</span>
+                    break;
                 case 's':
-                    //save elements, albums, playlists
-<span class="nc" id="L239">                    theHub.saveElements();</span>
-<span class="nc" id="L240">                    theHub.saveAlbums();</span>
-<span class="nc" id="L241">                    theHub.savePlayLists();</span>
-<span class="nc" id="L242">                    System.out.println(&quot;Elements, albums and playlists saved!&quot;);</span>
-<span class="nc" id="L243">                    printAvailableCommands();</span>
-<span class="nc" id="L244">                    choice = scan.nextLine();</span>
-<span class="nc" id="L245">                    break;</span>
-                case 'o':
+<span class="nc" id="L239">                    //save elements, albums, playlists</span>
+<span class="nc" id="L240">                    theHub.saveElements();</span>
+<span class="nc" id="L241">                    theHub.saveAlbums();</span>
+<span class="nc" id="L242">                    theHub.savePlayLists();</span>
+<span class="nc" id="L243">                    System.out.println(&quot;Elements, albums and playlists saved!&quot;);</span>
+<span class="nc" id="L244">                    printAvailableCommands();</span>
+<span class="nc" id="L245">                    choice = scan.nextLine();</span>
+                    break;
+                case 'r':
+<span class="nc" id="L248">                    //search a music</span>
+<span class="nc" id="L249">                    theHub.searchAudioElement();</span>
+<span class="nc" id="L250">                    printAvailableCommands();</span>
+<span class="nc" id="L251">                case 'o':</span>
                     //consult the app logs
-<span class="nc" id="L248">                    LogHandler.read();</span>
-<span class="nc" id="L249">                    System.out.println(&quot;Type h for available commands&quot;);</span>
-<span class="nc" id="L250">                    choice = scan.nextLine();</span>
-<span class="nc" id="L251">                    break;</span>
-                default:
-
-<span class="nc" id="L254">                    break;</span>
+                    LogHandler.read();
+<span class="nc" id="L254">                    System.out.println(&quot;Type h for available commands&quot;);</span>
+                    choice = scan.nextLine();
+                    break;
+<span class="nc" id="L257">                default:</span>
+<span class="nc" id="L258"></span>
+                    break;
             }
-        }
-<span class="nc" id="L257">        scan.close();</span>
-<span class="nc" id="L258">    }</span>
+<span class="nc" id="L261">        }</span>
+<span class="nc" id="L262">        scan.close();</span>
+<span class="nc" id="L263">    }</span>
+<span class="nc" id="L264"></span>
+<span class="nc" id="L265">    private static void printAvailableCommands() {</span>
+<span class="nc" id="L266">        System.out.println(&quot;t: display the album titles, ordered by date&quot;);</span>
+<span class="nc" id="L267">        System.out.println(&quot;g: display songs of an album, ordered by genre&quot;);</span>
+<span class="nc" id="L268">        System.out.println(&quot;d: display songs of an album&quot;);</span>
+<span class="nc" id="L269">        System.out.println(&quot;u: display audiobooks ordered by author&quot;);</span>
+<span class="nc" id="L270">        System.out.println(&quot;r: search audio elements&quot;);</span>
+<span class="nc" id="L271">        System.out.println(&quot;c: add a new song&quot;);</span>
+<span class="nc" id="L272">        System.out.println(&quot;a: add a new album&quot;);</span>
+<span class="nc" id="L273">        System.out.println(&quot;+: add a song to an album&quot;);</span>
+<span class="nc" id="L274">        System.out.println(&quot;l: add a new audiobook&quot;);</span>
+        System.out.println(&quot;p: create a new playlist from existing songs and audio books&quot;);
+        System.out.println(&quot;-: delete an existing playlist&quot;);
+        System.out.println(&quot;s: save elements, albums, playlists&quot;);
+        System.out.println(&quot;o: consult the app logs&quot;);
+        System.out.println(&quot;q: quit program&quot;);
+    }
 
-    private static void printAvailableCommands() {
-<span class="nc" id="L261">        System.out.println(&quot;t: display the album titles, ordered by date&quot;);</span>
-<span class="nc" id="L262">        System.out.println(&quot;g: display songs of an album, ordered by genre&quot;);</span>
-<span class="nc" id="L263">        System.out.println(&quot;d: display songs of an album&quot;);</span>
-<span class="nc" id="L264">        System.out.println(&quot;u: display audiobooks ordered by author&quot;);</span>
-<span class="nc" id="L265">        System.out.println(&quot;c: add a new song&quot;);</span>
-<span class="nc" id="L266">        System.out.println(&quot;a: add a new album&quot;);</span>
-<span class="nc" id="L267">        System.out.println(&quot;+: add a song to an album&quot;);</span>
-<span class="nc" id="L268">        System.out.println(&quot;l: add a new audiobook&quot;);</span>
-<span class="nc" id="L269">        System.out.println(&quot;p: create a new playlist from existing songs and audio books&quot;);</span>
-<span class="nc" id="L270">        System.out.println(&quot;-: delete an existing playlist&quot;);</span>
-<span class="nc" id="L271">        System.out.println(&quot;s: save elements, albums, playlists&quot;);</span>
-<span class="nc" id="L272">        System.out.println(&quot;o: consult the app logs&quot;);</span>
-<span class="nc" id="L273">        System.out.println(&quot;q: quit program&quot;);</span>
-<span class="nc" id="L274">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

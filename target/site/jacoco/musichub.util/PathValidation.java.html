@@ -32,13 +32,13 @@ public final class PathValidation {
      */
 
     public static boolean isPathValid(String inputPath) {
-<span class="fc" id="L35">        boolean isExtensionValid=false;</span>
+<span class="fc" id="L35">        boolean isExtensionValid = false;</span>
 
 <span class="fc" id="L37">        int index = inputPath.lastIndexOf('.');</span>
-<span class="fc bfc" id="L38" title="All 2 branches covered.">        if(index &gt; 0) {</span>
+<span class="fc bfc" id="L38" title="All 2 branches covered.">        if (index &gt; 0) {</span>
 <span class="fc" id="L39">            String extension = inputPath.substring(index + 1);</span>
-<span class="fc bfc" id="L40" title="All 2 branches covered.">            if (extension.equals(&quot;wav&quot;)){</span>
-<span class="fc" id="L41">                isExtensionValid=true;</span>
+<span class="fc bfc" id="L40" title="All 2 branches covered.">            if (extension.equals(&quot;wav&quot;)) {</span>
+<span class="fc" id="L41">                isExtensionValid = true;</span>
             }
         }
 

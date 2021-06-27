@@ -14,10 +14,10 @@ public class AudioBook extends AudioElement {
 <span class="nc" id="L14">    }</span>
 
     public AudioBook(String title, String artist, int lengthInSeconds, String content, String language, String category) {
-<span class="nc" id="L17">        super(title, artist, lengthInSeconds, content);</span>
-<span class="nc" id="L18">        this.setLanguage(language);</span>
-<span class="nc" id="L19">        this.setCategory(category);</span>
-<span class="nc" id="L20">    }</span>
+<span class="fc" id="L17">        super(title, artist, lengthInSeconds, content);</span>
+<span class="fc" id="L18">        this.setLanguage(language);</span>
+<span class="fc" id="L19">        this.setCategory(category);</span>
+<span class="fc" id="L20">    }</span>
 
     public AudioBook(Element xmlElement) {
 <span class="nc" id="L23">        super(xmlElement);</span>
@@ -26,32 +26,32 @@ public class AudioBook extends AudioElement {
 <span class="nc" id="L26">    }</span>
 
     public Language getLanguage() {
-<span class="nc" id="L29">        return this.language;</span>
+<span class="fc" id="L29">        return this.language;</span>
     }
 
     public void setLanguage(String language) {
-<span class="nc bnc" id="L33" title="All 5 branches missed.">        switch (language.toLowerCase()) {</span>
+<span class="pc bpc" id="L33" title="4 of 5 branches missed.">        switch (language.toLowerCase()) {</span>
 <span class="nc" id="L34">            default -&gt; this.language = Language.ENGLISH;</span>
-<span class="nc" id="L35">            case &quot;french&quot; -&gt; this.language = Language.FRENCH;</span>
+<span class="fc" id="L35">            case &quot;french&quot; -&gt; this.language = Language.FRENCH;</span>
 <span class="nc" id="L36">            case &quot;german&quot; -&gt; this.language = Language.GERMAN;</span>
 <span class="nc" id="L37">            case &quot;spanish&quot; -&gt; this.language = Language.SPANISH;</span>
 <span class="nc" id="L38">            case &quot;italian&quot; -&gt; this.language = Language.ITALIAN;</span>
         }
-<span class="nc" id="L40">    }</span>
+<span class="fc" id="L40">    }</span>
 
     public Category getCategory() {
-<span class="nc" id="L43">        return this.category;</span>
+<span class="fc" id="L43">        return this.category;</span>
     }
 
     public void setCategory(String category) {
-<span class="nc bnc" id="L47" title="All 5 branches missed.">        switch (category.toLowerCase()) {</span>
+<span class="pc bpc" id="L47" title="4 of 5 branches missed.">        switch (category.toLowerCase()) {</span>
 <span class="nc" id="L48">            default -&gt; this.category = Category.YOUTH;</span>
-<span class="nc" id="L49">            case &quot;novel&quot; -&gt; this.category = Category.NOVEL;</span>
+<span class="fc" id="L49">            case &quot;novel&quot; -&gt; this.category = Category.NOVEL;</span>
 <span class="nc" id="L50">            case &quot;theater&quot; -&gt; this.category = Category.THEATER;</span>
 <span class="nc" id="L51">            case &quot;documentary&quot; -&gt; this.category = Category.DOCUMENTARY;</span>
 <span class="nc" id="L52">            case &quot;speech&quot; -&gt; this.category = Category.SPEECH;</span>
         }
-<span class="nc" id="L54">    }</span>
+<span class="fc" id="L54">    }</span>
 
 
     public String toString() {
