@@ -342,6 +342,7 @@ public class MusicHub {
 
     public void searchAudioElement() throws UnsupportedAudioFileException, NoAlbumFoundException, LineUnavailableException, IOException {
         Scanner scanner = new Scanner(System.in);
+        System.out.println("Entrez le titre ou l'artiste de la musique que vous souhaitez chercher dans la base de données");
         String word = scanner.next().toLowerCase(Locale.ROOT);
         List<AudioElement> searchResult = new ArrayList<>();
         for(AudioElement el : elements){
@@ -349,6 +350,10 @@ public class MusicHub {
                 searchResult.add(el);
                 System.out.println(el);
             }
+        }
+
+        if(searchResult.isEmpty()){
+            System.err.println("Aucun résultat pour votre recherche");
         }
         if (searchResult.size()==1){
             this.getAudioElement(searchResult, searchResult.get(0).getTitle());

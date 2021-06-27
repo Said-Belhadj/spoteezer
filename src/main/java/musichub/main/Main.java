@@ -244,6 +244,8 @@ public class Main {
                 case 'r':
                     //search a music
                     theHub.searchAudioElement();
+                    printAvailableCommands();
+                    choice = scan.nextLine();
                     break;
                 default:
 
@@ -258,6 +260,7 @@ public class Main {
         System.out.println("g: display songs of an album, ordered by genre");
         System.out.println("d: display songs of an album");
         System.out.println("u: display audiobooks ordered by author");
+        System.out.println("r: search audio elements");
         System.out.println("c: add a new song");
         System.out.println("a: add a new album");
         System.out.println("+: add a song to an album");
