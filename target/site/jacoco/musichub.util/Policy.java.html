@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Policy.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">spoteezer</a> &gt; <a href="index.source.html" class="el_package">musichub.util</a> &gt; <span class="el_source">Policy.java</span></div><h1>Policy.java</h1><pre class="source lang-java linenums">package musichub.util;
+
+import java.util.Scanner;
+
+/**
+ * Class ...
+ *
+ * @author Anthony BOULANT
+ * @version 1.0
+ */
+
+public final class Policy {
+
+    /**
+     * Method that just throws an AssertionError if the class is called
+     *
+     * @throws AssertionError you can't instantiate this class
+     * @author Anthony BOULANT
+     */
+
+<span class="nc" id="L21">    public Policy() {</span>
+<span class="nc" id="L22">        throw new AssertionError(&quot;You just can't instantiate this class.&quot;);</span>
+    }
+
+    public static void showTerm() {
+
+<span class="nc" id="L27">        String termsAndConditions = &quot;Terms and Conditions\n&quot; +</span>
+                &quot;\n&quot; +
+                &quot;\n&quot; +
+                &quot;In using this website you are deemed to have read and agreed to the following terms and conditions:\n&quot; +
+                &quot;\n&quot; +
+                &quot;\n&quot; +
+                &quot;The following terminology applies to these Terms and Conditions, Privacy Statement and Disclaimer Notice and any or all Agreements: \&quot;Client\&quot;, “You” and “Your” refers to you, the person accessing this website and accepting the Company’s terms and conditions. \&quot;The Company\&quot;, “Ourselves”, “We” and \&quot;Us\&quot;, refers to our Company. “Party”, “Parties”, or “Us”, refers to both the Client and ourselves, or either the Client or ourselves. All terms refer to the offer, acceptance and consideration of payment necessary to undertake the process of our assistance to the Client in the most appropriate manner, whether by formal meetings of a fixed duration, or any other means, for the express purpose of meeting the Client’s needs in respect of provision of the Company’s stated services/products, in accordance with and subject to, prevailing English Law. Any use of the above terminology or other words in the singular, plural, capitalisation and/or he/she or they, are taken as interchangeable and therefore as referring to same.\n&quot; +
+                &quot;\n&quot; +
+                &quot;\n&quot; +
+                &quot;Privacy Statement\n&quot; +
+                &quot;We are committed to protecting your privacy. Authorized employees within the company on a need to know basis only use any information collected from individual customers. We constantly review our systems and data to ensure the best possible service to our customers. Parliament has created specific offences for unauthorised actions against computer systems and data. We will investigate any such actions with a view to prosecuting and/or taking civil proceedings to recover damages against those responsible\n&quot; +
+                &quot;\n&quot; +
+                &quot;\n&quot; +
+                &quot;Confidentiality\n&quot; +
+                &quot;We are registered under the Data Protection Act 1998 and as such, any information concerning the Client and their respective Client Records may be passed to third parties. However, Client records are regarded as confidential and therefore will not be divulged to any third party, other than if legally required to do so to the appropriate authorities. Clients have the right to request sight of, and copies of any and all Client Records we keep, on the proviso that we are given reasonable notice of such a request. Clients are requested to retain copies of any literature issued in relation to the provision of our services. Where appropriate, we shall issue Client’s with appropriate written information, handouts or copies of records as part of an agreed contract, for the benefit of both parties.\n&quot; +
+                &quot;\n&quot; +
+                &quot;We will not sell, share, or rent your personal information to any third party or use your e-mail address for unsolicited mail. Any emails sent by this Company will only be in connection with the provision of agreed services and products.\n&quot; +
+                &quot;\n&quot; +
+                &quot;\n&quot; +
+                &quot;Disclaimer\n&quot; +
+                &quot;Exclusions and Limitations \n&quot; +
+                &quot;The information on this web site is provided on an \&quot;as is\&quot; basis. To the fullest extent permitted by law, this Company:\n&quot; +
+                &quot;\uF0A7\texcludes all representations and warranties relating to this website and its contents or which is or may be provided by any affiliates or any other third party, including in relation to any inaccuracies or omissions in this website and/or the Company’s literature; and \n&quot; +
+                &quot;\uF0A7\texcludes all liability for damages arising out of or in connection with your use of this website. This includes, without limitation, direct loss, loss of business or profits (whether or not the loss of such profits was foreseeable, arose in the normal course of things or you have advised this Company of the possibility of such potential loss), damage caused to your computer, computer software, systems and programs and the data thereon or any other direct or indirect, consequential and incidental damages. \n&quot; +
+                &quot;This Company does not however exclude liability for death or personal injury caused by its negligence. The above exclusions and limitations apply only to the extent permitted by law. None of your statutory rights as a consumer are affected. \n&quot; +
+                &quot;\n&quot; +
+                &quot;\n&quot; +
+                &quot;\n&quot; +
+                &quot;\n&quot; +
+                &quot;\n&quot; +
+                &quot;\n&quot; +
+                &quot;Cancellation Policy\n&quot; +
+                &quot;Minimum 24 hours’ notice of cancellation required. Notification for instance, in person, via email, mobile phone ‘text message’ and/or fax, or any other means will be accepted subject to confirmation in writing. We reserve the right to levy a £30 charge to cover any subsequent administrative expenses.\n&quot; +
+                &quot;\n&quot; +
+                &quot;\n&quot; +
+                &quot;Termination of Agreements and Refunds Policy\n&quot; +
+                &quot;Both the Client and we have the right to terminate any Services Agreement for any reason, including the ending of services that are already underway. No refunds shall be offered, where a Service is deemed to have begun and is, for all intents and purposes, underway. Any monies that have been paid to us which constitute payment in respect of the provision of unused Services, shall be refunded.\n&quot; +
+                &quot;\n&quot; +
+                &quot;\n&quot; +
+                &quot;Availability \n&quot; +
+                &quot;Unless otherwise stated, the services featured on this website are only available in France, or in relation to postings from France. All advertising is intended solely for the France market. You are solely responsible for evaluating the fitness for a particular purpose of any downloads, programs and text available through this site. Redistribution or republication of any part of this site or its content is prohibited, including such by framing or other similar or any other means, without the express written consent of the Company. The Company does not warrant that the service from this site will be uninterrupted, timely or error free, although it is provided to the best ability. By using this service you thereby indemnify this Company, its employees, agents and affiliates against any loss or damage, in whatever manner, howsoever caused.\n&quot; +
+                &quot;\n&quot; +
+                &quot;\n&quot; +
+                &quot;\n&quot; +
+                &quot;Copyright Notice \n&quot; +
+                &quot;Copyright and other relevant intellectual property rights exists on all text relating to the Company’s services and the full content of this application. \n&quot; +
+                &quot;\n&quot; +
+                &quot;\n&quot; +
+                &quot;Communication\n&quot; +
+                &quot;We have several different e-mail addresses for different queries. These, &amp; other contact information, can be found on our Contact Us link on our website or via Company literature or via the Company’s stated telephone, facsimile or mobile telephone numbers.\n&quot; +
+                &quot;\n&quot; +
+                &quot;\n&quot; +
+                &quot;Force Majeure\n&quot; +
+                &quot;Neither party shall be liable to the other for any failure to perform any obligation under any Agreement which is due to an event beyond the control of such party including but not limited to any Act of God, terrorism, war, Political insurgence, insurrection, riot, civil unrest, act of civil or military authority, uprising, earthquake, flood or any other natural or manmade eventuality outside of our control, which causes the termination of an agreement or contract entered into, nor which could have been reasonably foreseen. Any Party affected by such event shall forthwith inform the other Party of the same and shall use all reasonable endeavours to comply with the terms and conditions of any Agreement contained herein.\n&quot; +
+                &quot;\n&quot; +
+                &quot;\n&quot; +
+                &quot;Waiver\n&quot; +
+                &quot;Failure of either Party to insist upon strict performance of any provision of this or any Agreement or the failure of either Party to exercise any right or remedy to which it, he or they are entitled hereunder shall not constitute a waiver thereof and shall not cause a diminution of the obligations under this or any Agreement. No waiver of any of the provisions of this or any Agreement shall be effective unless it is expressly stated to be such and signed by both Parties.\n&quot; +
+                &quot;\n&quot; +
+                &quot;\n&quot; +
+                &quot;General\n&quot; +
+                &quot;The laws of France govern these terms and conditions. By accessing this application, you consent to these terms and conditions and to the exclusive jurisdiction of the English courts in all disputes arising out of such access. If any of these terms are deemed invalid or unenforceable for any reason (including, but not limited to the exclusions and limitations set out above), then the invalid or unenforceable provision will be severed from these terms and the remaining terms will continue to apply. Failure of the Company to enforce any of the provisions set out in these Terms and Conditions and any Agreement, or failure to exercise any option to terminate, shall not be construed as waiver of such provisions and shall not affect the validity of these Terms and Conditions or of any Agreement or any part thereof, or the right thereafter to enforce each and every provision. These Terms and Conditions shall not be amended, modified, varied or supplemented except in writing and signed by duly authorised representatives of the Company.\n&quot; +
+                &quot;\n&quot; +
+                &quot;\n&quot; +
+                &quot;Notification of Changes\n&quot; +
+                &quot;The Company reserves the right to change these conditions from time to time as it sees fit and your continued use of the site will signify your acceptance of any adjustment to these terms. If there are any changes to our privacy policy, we will announce that these changes have been made on our home page and on other key pages on our site. If there are any changes in how we use our site customers’ Personally Identifiable Information, notification by e-mail or postal mail will be made to those affected by this change. Any changes to our privacy policy will be posted on our web site 30 days prior to these changes taking place. You are therefore advised to re-read this statement on a regular basis\n&quot; +
+                &quot;\n&quot; +
+                &quot;\n&quot; +
+                &quot;These terms and conditions form part of the Agreement between the Client and ourselves. Your accessing of this website and/or undertaking of a booking or Agreement indicates your understanding, agreement to and acceptance, of the Disclaimer Notice and the full Terms and Conditions contained herein. Your statutory Consumer Rights are unaffected.    \n&quot; +
+                &quot;© Company Name 2021 All Rights Reserved\n&quot; +
+                &quot;\n&quot; +
+                &quot;\n&quot; +
+                &quot;\n&quot; +
+                &quot;\n&quot; +
+                &quot;\n&quot; +
+                &quot;\n&quot; +
+                &quot;\n&quot; +
+                &quot;\n&quot; +
+                &quot;\n&quot;;
+
+<span class="nc" id="L107">        printAgreement();</span>
+<span class="nc" id="L108">        Scanner scan = new Scanner(System.in);</span>
+<span class="nc" id="L109">        String choice = scan.nextLine().toLowerCase();</span>
+
+<span class="nc bnc" id="L111" title="All 2 branches missed.">        while (!choice.equals(&quot;y&quot;)) {</span>
+<span class="nc bnc" id="L112" title="All 3 branches missed.">            switch (choice.charAt(0)) {</span>
+<span class="nc" id="L113">                case 'n' -&gt; System.exit(0);</span>
+<span class="nc" id="L114">                case 'r' -&gt; {</span>
+<span class="nc" id="L115">                    System.out.println(termsAndConditions);</span>
+<span class="nc" id="L116">                    printAgreement();</span>
+<span class="nc" id="L117">                    choice = scan.nextLine().toLowerCase();</span>
+                }
+<span class="nc" id="L119">                default -&gt; {</span>
+<span class="nc" id="L120">                    printAgreement();</span>
+<span class="nc" id="L121">                    choice = scan.nextLine().toLowerCase();</span>
+                }
+            }
+        }
+<span class="nc" id="L125">    }</span>
+
+    private static void printAgreement() {
+<span class="nc" id="L128">        System.out.println(&quot;By using our app, do you accept our Terms and Conditions ?&quot;);</span>
+<span class="nc" id="L129">        System.out.println(&quot;[YES : y    NO :  n    READ : r]&quot;);</span>
+<span class="nc" id="L130">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>
