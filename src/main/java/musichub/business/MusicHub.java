@@ -359,5 +359,33 @@ public class MusicHub {
             this.getAudioElement(searchResult, searchResult.get(0).getTitle());
         }
     }
+    public String getPlayListsTitles() {
+        StringBuilder titleList = new StringBuilder();
 
+        for (PlayList pl : playlists)
+            titleList.append(pl.getTitle()).append("\n");
+        return titleList.toString();
+    }
+
+    public List<AudioElement> getPlayListSongs(String playListTitle) throws NoPlayListFoundException {
+        PlayList thePlayList = null;
+        ArrayList<AudioElement> songsInPlayList = new ArrayList<>();
+        for (PlayList pl : playlists) {
+            if (pl.getTitle().equalsIgnoreCase(playListTitle)) {
+                thePlayList = pl;
+                break;
+            }
+        }
+        if (thePlayList == null) throw new NoPlayListFoundException("No playlist with this title in the MusicHub!");
+
+        List<UUID> songIDs = thePlayList.getElements();
+        for (UUID id : songIDs)
+            for (AudioElement el : elements) {
+                if (el instanceof Song) {
+                    if (el.getUUID().equals(id)) songsInPlayList.add(el);
+                }
+            }
+        return songsInPlayList;
+
+    }
 }
