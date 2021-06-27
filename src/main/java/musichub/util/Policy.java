@@ -122,6 +122,10 @@ public final class Policy {
                     printAgreement();
                     choice = scan.nextLine();
                 }
+                default -> {
+                    printAgreement();
+                    choice = scan.nextLine();
+                }
             }
         }
     }
