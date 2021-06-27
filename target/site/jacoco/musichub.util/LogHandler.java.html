@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>LogHandler.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">spoteezer</a> &gt; <a href="index.source.html" class="el_package">musichub.util</a> &gt; <span class="el_source">LogHandler.java</span></div><h1>LogHandler.java</h1><pre class="source lang-java linenums">package musichub.util;
+
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.StandardOpenOption;
+import java.sql.Timestamp;
+
+/**
+ * Class offering a log writing method.
+ *
+ * @author Aimeric ADJUTOR
+ * @version 1.0
+ */
+
+public final class LogHandler {
+
+    /**
+     * Method that just throws an AssertionError if the class is called
+     *
+     * @throws AssertionError you can't instantiate this class
+     * @author Aimeric ADJUTOR
+     */
+
+<span class="fc" id="L25">    public LogHandler() {</span>
+<span class="fc" id="L26">        throw new AssertionError(&quot;You just can't instantiate this class.&quot;);</span>
+    }
+
+    /**
+     * Method that writes a log message to spoteezer.log
+     *
+     * @param msg  the message to write
+     * @param type the type of log
+     * @throws IOException if the file's not there
+     */
+    public static void write(String msg, String type) throws IOException {
+
+<span class="fc" id="L38">        Timestamp timestamp = new Timestamp(System.currentTimeMillis());</span>
+
+        //Create the log using the given message
+<span class="fc" id="L41">        String logMsg = &quot;\n[&quot; + timestamp + &quot;] &quot; + type + &quot;: &quot; + msg;</span>
+
+        // Define the file name of the file
+<span class="fc" id="L44">        Path fileName = Path.of(&quot;log/spoteezer.log&quot;);</span>
+
+        // Write into the file
+<span class="fc" id="L47">        Files.writeString(fileName, logMsg, StandardOpenOption.APPEND);</span>
+
+
+<span class="fc" id="L50">    }</span>
+
+    /**
+     * Method that prints the content of spoteezer.log
+     *
+     * @throws IOException if the file's not there
+     */
+    public static void read() throws IOException {
+<span class="fc" id="L58">        Path fileName = Path.of(&quot;log/spoteezer.log&quot;);</span>
+
+        // Read the content of the file
+<span class="fc" id="L61">        String file_content = Files.readString(fileName);</span>
+
+        // Print the content inside the file
+<span class="fc" id="L64">        System.out.println(&quot;\n&quot; + file_content + &quot;\n&quot;);</span>
+
+<span class="fc" id="L66">    }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>
