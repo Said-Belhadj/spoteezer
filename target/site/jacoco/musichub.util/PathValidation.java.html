@@ -25,15 +25,25 @@ public final class PathValidation {
     }
 
     /**
-     * Method that checks the validity of a given path
+     * Method that checks the validity of a given path and file.
      *
      * @param inputPath the path given by the user
      * @return a boolean
      */
 
     public static boolean isPathValid(String inputPath) {
-<span class="fc" id="L35">        Path path = Paths.get(inputPath);</span>
-<span class="fc" id="L36">        return Files.exists(path);</span>
+<span class="fc" id="L35">        boolean isExtensionValid=false;</span>
+
+<span class="fc" id="L37">        int index = inputPath.lastIndexOf('.');</span>
+<span class="fc bfc" id="L38" title="All 2 branches covered.">        if(index &gt; 0) {</span>
+<span class="fc" id="L39">            String extension = inputPath.substring(index + 1);</span>
+<span class="fc bfc" id="L40" title="All 2 branches covered.">            if (extension.equals(&quot;wav&quot;)){</span>
+<span class="fc" id="L41">                isExtensionValid=true;</span>
+            }
+        }
+
+<span class="fc" id="L45">        Path path = Paths.get(inputPath);</span>
+<span class="fc" id="L46">        return (Files.exists(path) &amp; isExtensionValid);</span>
     }
 
 }

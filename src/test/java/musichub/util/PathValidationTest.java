@@ -19,8 +19,9 @@ public class PathValidationTest {
 
     @Test
     void testIsPathValid() {
-        assertTrue(isPathValid("Song/Side_To_Side.wav")); //the right path
-        assertFalse(isPathValid("wrong_path/Side_To_Side.wav")); //wrong path
-        assertFalse(isPathValid("Song/Side_To_Side.mp3")); //wrong extension
+        assertTrue(isPathValid("Song/Side_To_Side.wav")); //right path, right file, right extension
+        assertFalse(isPathValid("wrong_path/Side_To_Side.wav")); //wrong path, right file, right extension
+        assertFalse(isPathValid("Song/Side_To_Side.mp3")); //right path, right file, wrong extension
+        assertFalse(isPathValid("Song/Side_To_Sidewav")); //right path, right file, wrong extension (without a dot)
     }
 }

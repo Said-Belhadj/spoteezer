@@ -1,9 +1,3 @@
 [yyyy-MM-dd HH:mm:ss.SSS] TYPE: Message
-[2021-06-26 21:37:09.507] WARNING: The music file was not found with the path you've provided.
-[2021-06-26 21:45:11.453] WARNING: The music file was not found with the path you've provided.
-[2021-06-27 12:21:37.507] TEST: JUnit test
-[2021-06-27 12:26:02.741] TEST: JUnit test
-[2021-06-27 12:28:05.542] TEST: JUnit test
-[2021-06-27 12:28:41.186] TEST: JUnit test
-[2021-06-27 12:31:42.777] TEST: JUnit test
-[2021-06-27 12:40:20.609] TEST: JUnit test
+[2021-06-27 13:23:02.181] WARNING: The music file was not found with the path you've provided or the extension is not .wav
+[2021-06-27 13:23:40.286] TEST: JUnit test
