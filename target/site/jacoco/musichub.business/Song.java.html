@@ -27,32 +27,32 @@ public class Song extends AudioElement {
     }
 
     public void setGenre(String genre) {
-<span class="pc bpc" id="L30" title="4 of 6 branches missed.">        switch (genre.toLowerCase()) {</span>
-<span class="nc" id="L31">            default -&gt; this.genre = Genre.JAZZ;</span>
-<span class="nc" id="L32">            case &quot;classic&quot; -&gt; this.genre = Genre.CLASSIC;</span>
-<span class="nc" id="L33">            case &quot;hiphop&quot; -&gt; this.genre = Genre.HIPHOP;</span>
+<span class="fc bfc" id="L30" title="All 6 branches covered.">        switch (genre.toLowerCase()) {</span>
+<span class="fc" id="L31">            default -&gt; this.genre = Genre.JAZZ;</span>
+<span class="fc" id="L32">            case &quot;classic&quot; -&gt; this.genre = Genre.CLASSIC;</span>
+<span class="fc" id="L33">            case &quot;hiphop&quot; -&gt; this.genre = Genre.HIPHOP;</span>
 <span class="fc" id="L34">            case &quot;rock&quot; -&gt; this.genre = Genre.ROCK;</span>
 <span class="fc" id="L35">            case &quot;pop&quot; -&gt; this.genre = Genre.POP;</span>
-<span class="nc" id="L36">            case &quot;rap&quot; -&gt; this.genre = Genre.RAP;</span>
+<span class="fc" id="L36">            case &quot;rap&quot; -&gt; this.genre = Genre.RAP;</span>
         }
 <span class="fc" id="L38">    }</span>
 
     public String toString() {
-<span class="nc" id="L41">        return super.toString() + &quot;, Genre = &quot; + getGenre() + &quot;\n&quot;;</span>
+<span class="fc" id="L41">        return super.toString() + &quot;, Genre = &quot; + getGenre() + &quot;\n&quot;;</span>
     }
 
     public void createXMLElement(Document document, Element parentElement) {
         // song element
-<span class="nc" id="L46">        Element song = document.createElement(&quot;song&quot;);</span>
+<span class="fc" id="L46">        Element song = document.createElement(&quot;song&quot;);</span>
 
-<span class="nc" id="L48">        super.createXMLElement(document, song);</span>
+<span class="fc" id="L48">        super.createXMLElement(document, song);</span>
 
-<span class="nc" id="L50">        Element genreElement = document.createElement(&quot;genre&quot;);</span>
-<span class="nc" id="L51">        genreElement.appendChild(document.createTextNode(genre.getGenre()));</span>
-<span class="nc" id="L52">        song.appendChild(genreElement);</span>
+<span class="fc" id="L50">        Element genreElement = document.createElement(&quot;genre&quot;);</span>
+<span class="fc" id="L51">        genreElement.appendChild(document.createTextNode(genre.getGenre()));</span>
+<span class="fc" id="L52">        song.appendChild(genreElement);</span>
 
-<span class="nc" id="L54">        parentElement.appendChild(song);</span>
-<span class="nc" id="L55">    }</span>
+<span class="fc" id="L54">        parentElement.appendChild(song);</span>
+<span class="fc" id="L55">    }</span>
     
 
 }
