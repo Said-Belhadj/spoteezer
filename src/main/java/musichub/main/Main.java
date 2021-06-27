@@ -12,7 +12,8 @@ import java.util.Scanner;
 import static musichub.business.PathValidation.isPathValid;
 
 public class Main {
-    public static void main(String[] args) throws UnsupportedAudioFileException, IOException, LineUnavailableException {
+    public static void main(String[] args) throws UnsupportedAudioFileException, IOException, LineUnavailableException, NoAlbumFoundException {
+
 
         MusicHub theHub = new MusicHub();
 
@@ -240,6 +241,10 @@ public class Main {
                     printAvailableCommands();
                     choice = scan.nextLine();
                     break;
+                case 'r':
+                    //search a music
+                    theHub.searchAudioElement();
+                    break;
                 default:
 
                     break;
@@ -262,4 +267,5 @@ public class Main {
         System.out.println("s: save elements, albums, playlists");
         System.out.println("q: quit program");
     }
+
 }

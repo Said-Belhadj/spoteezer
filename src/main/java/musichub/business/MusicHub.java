@@ -339,4 +339,20 @@ public class MusicHub {
         }
 
     }
+
+    public void searchAudioElement() throws UnsupportedAudioFileException, NoAlbumFoundException, LineUnavailableException, IOException {
+        Scanner scanner = new Scanner(System.in);
+        String word = scanner.next().toLowerCase(Locale.ROOT);
+        List<AudioElement> searchResult = new ArrayList<>();
+        for(AudioElement el : elements){
+            if(el.getTitle().toLowerCase(Locale.ROOT).contains(word) || el.getArtist().toLowerCase(Locale.ROOT).contains(word)){
+                searchResult.add(el);
+                System.out.println(el);
+            }
+        }
+        if (searchResult.size()==1){
+            this.getAudioElement(searchResult, searchResult.get(0).getTitle());
+        }
+    }
+
 }
