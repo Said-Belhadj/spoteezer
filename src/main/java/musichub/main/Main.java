@@ -1,6 +1,7 @@
 package musichub.main;
 
 import musichub.business.*;
+import musichub.util.LogHandler;
 
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
@@ -9,7 +10,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
 
-import static musichub.business.PathValidation.isPathValid;
+import static musichub.util.PathValidation.isPathValid;
 
 public class Main {
     public static void main(String[] args) throws UnsupportedAudioFileException, IOException, LineUnavailableException, NoAlbumFoundException {
@@ -94,7 +95,9 @@ public class Main {
                     System.out.println("Song content: ");
                     String content = scan.nextLine();
                     if (!isPathValid(content)) {
-                        System.out.println("The music file was not found with the path you've provided.\nType h for available commands");
+                        String logMsg = "The music file was not found with the path you've provided.";
+                        LogHandler.write(logMsg, "WARNING"); //write a line in the log file
+                        System.out.println(logMsg + "\nType h for available commands");
                         choice = scan.nextLine();
                         break;
                     }
@@ -245,6 +248,10 @@ public class Main {
                     //search a music
                     theHub.searchAudioElement();
                     printAvailableCommands();
+                case 'o':
+                    //consult the app logs
+                    LogHandler.read();
+                    System.out.println("Type h for available commands");
                     choice = scan.nextLine();
                     break;
                 default:
@@ -268,6 +275,7 @@ public class Main {
         System.out.println("p: create a new playlist from existing songs and audio books");
         System.out.println("-: delete an existing playlist");
         System.out.println("s: save elements, albums, playlists");
+        System.out.println("o: consult the app logs");
         System.out.println("q: quit program");
     }
 
