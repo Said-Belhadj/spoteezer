@@ -1,26 +1,4 @@
 [yyyy-MM-dd HH:mm:ss.SSS] TYPE: Message
 [2021-06-26 21:37:09.507] WARNING: The music file was not found with the path you've provided.
 [2021-06-26 21:45:11.453] WARNING: The music file was not found with the path you've provided.
-[2021-06-26 22:05:28.614] INFO: JUnit test
-[2021-06-26 22:06:26.191] INFO: JUnit test
-[2021-06-26 22:06:38.453] INFO: JUnit test
-[2021-06-27 10:23:31.646] INFO: JUnit test
-[2021-06-27 10:31:25.514] INFO: JUnit test
-[2021-06-27 10:38:07.141] INFO: JUnit test
-[2021-06-27 10:42:26.41] INFO: JUnit test
-[2021-06-27 10:44:04.343] INFO: JUnit test
-[2021-06-27 10:44:22.383] INFO: JUnit test
-[2021-06-27 10:50:24.719] INFO: JUnit test
-[2021-06-27 10:52:37.112] INFO: JUnit test
-[2021-06-27 10:52:59.042] INFO: JUnit test
-[2021-06-27 10:57:26.087] INFO: JUnit test
-[2021-06-27 10:58:04.601] INFO: JUnit test
-[2021-06-27 11:03:08.428] INFO: JUnit test
-[2021-06-27 11:05:43.601] INFO: JUnit test
-[2021-06-27 11:06:15.442] INFO: JUnit test
-[2021-06-27 11:06:35.753] INFO: JUnit test
-[2021-06-27 11:08:19.669] INFO: JUnit test
-[2021-06-27 11:09:37.095] INFO: JUnit test
-[2021-06-27 11:09:46.982] INFO: JUnit test
-[2021-06-27 11:13:46.639] INFO: JUnit test
-[2021-06-27 11:15:45.379] INFO: JUnit test
+[2021-06-27 11:17:47.927] TEST: JUnit test

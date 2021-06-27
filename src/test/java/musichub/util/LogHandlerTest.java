@@ -24,7 +24,7 @@ public class LogHandlerTest {
     @Test
     void testWrite() {
         try {
-            write("JUnit test", "INFO");
+            write("JUnit test", "TEST");
         } catch (IOException e) {
             e.printStackTrace();
         }
