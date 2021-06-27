@@ -1,10 +1,5 @@
 package musichub.util;
 
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.StandardOpenOption;
-import java.sql.Timestamp;
 import java.util.Scanner;
 
 /**
@@ -111,8 +106,7 @@ public final class Policy {
 
         printAgreement();
         Scanner scan = new Scanner(System.in);
-        String choice = scan.nextLine();
-        choice = choice.toLowerCase();
+        String choice = scan.nextLine().toLowerCase();
 
         while (!choice.equals("y")) {
             switch (choice.charAt(0)) {
@@ -120,11 +114,11 @@ public final class Policy {
                 case 'r' -> {
                     System.out.println(termsAndConditions);
                     printAgreement();
-                    choice = scan.nextLine();
+                    choice = scan.nextLine().toLowerCase();
                 }
                 default -> {
                     printAgreement();
-                    choice = scan.nextLine();
+                    choice = scan.nextLine().toLowerCase();
                 }
             }
         }
