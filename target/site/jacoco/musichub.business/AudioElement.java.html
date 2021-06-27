@@ -21,39 +21,39 @@ public abstract class AudioElement {
     protected UUID uuid;
     protected String content;
 
-<span class="nc" id="L24">    public AudioElement(String title, String artist, int lengthInSeconds, String id, String content) {</span>
-<span class="nc" id="L25">        this.title = title;</span>
-<span class="nc" id="L26">        this.artist = artist;</span>
-<span class="nc" id="L27">        this.lengthInSeconds = lengthInSeconds;</span>
-<span class="nc" id="L28">        this.uuid = UUID.fromString(id);</span>
-<span class="nc" id="L29">        this.content = content;</span>
-<span class="nc" id="L30">    }</span>
+<span class="fc" id="L24">    public AudioElement(String title, String artist, int lengthInSeconds, String id, String content) {</span>
+<span class="fc" id="L25">        this.title = title;</span>
+<span class="fc" id="L26">        this.artist = artist;</span>
+<span class="fc" id="L27">        this.lengthInSeconds = lengthInSeconds;</span>
+<span class="fc" id="L28">        this.uuid = UUID.fromString(id);</span>
+<span class="fc" id="L29">        this.content = content;</span>
+<span class="fc" id="L30">    }</span>
 
-<span class="nc" id="L32">    public AudioElement(String title, String artist, int lengthInSeconds, String content) {</span>
-<span class="nc" id="L33">        this.title = title;</span>
-<span class="nc" id="L34">        this.artist = artist;</span>
-<span class="nc" id="L35">        this.lengthInSeconds = lengthInSeconds;</span>
-<span class="nc" id="L36">        this.content = content;</span>
-<span class="nc" id="L37">        this.uuid = UUID.randomUUID();</span>
-<span class="nc" id="L38">    }</span>
+<span class="fc" id="L32">    public AudioElement(String title, String artist, int lengthInSeconds, String content) {</span>
+<span class="fc" id="L33">        this.title = title;</span>
+<span class="fc" id="L34">        this.artist = artist;</span>
+<span class="fc" id="L35">        this.lengthInSeconds = lengthInSeconds;</span>
+<span class="fc" id="L36">        this.content = content;</span>
+<span class="fc" id="L37">        this.uuid = UUID.randomUUID();</span>
+<span class="fc" id="L38">    }</span>
 
-<span class="nc" id="L40">    public AudioElement(Element xmlElement) {</span>
+<span class="fc" id="L40">    public AudioElement(Element xmlElement) {</span>
         {
-<span class="nc" id="L42">            title = xmlElement.getElementsByTagName(&quot;title&quot;).item(0).getTextContent();</span>
-<span class="nc" id="L43">            artist = xmlElement.getElementsByTagName(&quot;artist&quot;).item(0).getTextContent();</span>
-<span class="nc" id="L44">            lengthInSeconds = Integer.parseInt(xmlElement.getElementsByTagName(&quot;length&quot;).item(0).getTextContent());</span>
-<span class="nc" id="L45">            content = xmlElement.getElementsByTagName(&quot;content&quot;).item(0).getTextContent();</span>
-<span class="nc" id="L46">            String uuid = null;</span>
+<span class="fc" id="L42">            title = xmlElement.getElementsByTagName(&quot;title&quot;).item(0).getTextContent();</span>
+<span class="fc" id="L43">            artist = xmlElement.getElementsByTagName(&quot;artist&quot;).item(0).getTextContent();</span>
+<span class="fc" id="L44">            lengthInSeconds = Integer.parseInt(xmlElement.getElementsByTagName(&quot;length&quot;).item(0).getTextContent());</span>
+<span class="fc" id="L45">            content = xmlElement.getElementsByTagName(&quot;content&quot;).item(0).getTextContent();</span>
+<span class="fc" id="L46">            String uuid = null;</span>
             try {
-<span class="nc" id="L48">                uuid = xmlElement.getElementsByTagName(&quot;UUID&quot;).item(0).getTextContent();</span>
+<span class="fc" id="L48">                uuid = xmlElement.getElementsByTagName(&quot;UUID&quot;).item(0).getTextContent();</span>
 <span class="nc" id="L49">            } catch (Exception ex) {</span>
 <span class="nc" id="L50">                System.out.println(&quot;Empty element UUID, will create a new one&quot;);</span>
-<span class="nc" id="L51">            }</span>
-<span class="nc bnc" id="L52" title="All 4 branches missed.">            if ((uuid == null) || (uuid.isEmpty()))</span>
+<span class="fc" id="L51">            }</span>
+<span class="pc bpc" id="L52" title="2 of 4 branches missed.">            if ((uuid == null) || (uuid.isEmpty()))</span>
 <span class="nc" id="L53">                this.uuid = UUID.randomUUID();</span>
-<span class="nc" id="L54">            else this.uuid = UUID.fromString(uuid);</span>
+<span class="fc" id="L54">            else this.uuid = UUID.fromString(uuid);</span>
         }
-<span class="nc" id="L56">    }</span>
+<span class="fc" id="L56">    }</span>
 
     public UUID getUUID() {
 <span class="nc" id="L59">        return this.uuid;</span>

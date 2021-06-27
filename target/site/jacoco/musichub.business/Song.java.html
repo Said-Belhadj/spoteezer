@@ -8,34 +8,34 @@ public class Song extends AudioElement {
     private Genre genre;
 
     public Song(String title, String artist, int length, String uid, String content, String genre) {
-<span class="nc" id="L11">        super(title, artist, length, uid, content);</span>
-<span class="nc" id="L12">        this.setGenre(genre);</span>
-<span class="nc" id="L13">    }</span>
+<span class="fc" id="L11">        super(title, artist, length, uid, content);</span>
+<span class="fc" id="L12">        this.setGenre(genre);</span>
+<span class="fc" id="L13">    }</span>
 
     public Song(String title, String artist, int length, String content, String genre) {
-<span class="nc" id="L16">        super(title, artist, length, content);</span>
-<span class="nc" id="L17">        this.setGenre(genre);</span>
-<span class="nc" id="L18">    }</span>
+<span class="fc" id="L16">        super(title, artist, length, content);</span>
+<span class="fc" id="L17">        this.setGenre(genre);</span>
+<span class="fc" id="L18">    }</span>
 
     public Song(Element xmlElement) {
-<span class="nc" id="L21">        super(xmlElement);</span>
-<span class="nc" id="L22">        this.setGenre(xmlElement.getElementsByTagName(&quot;genre&quot;).item(0).getTextContent());</span>
-<span class="nc" id="L23">    }</span>
+<span class="fc" id="L21">        super(xmlElement);</span>
+<span class="fc" id="L22">        this.setGenre(xmlElement.getElementsByTagName(&quot;genre&quot;).item(0).getTextContent());</span>
+<span class="fc" id="L23">    }</span>
 
     public String getGenre() {
-<span class="nc" id="L26">        return genre.getGenre();</span>
+<span class="fc" id="L26">        return genre.getGenre();</span>
     }
 
     public void setGenre(String genre) {
-<span class="nc bnc" id="L30" title="All 6 branches missed.">        switch (genre.toLowerCase()) {</span>
+<span class="pc bpc" id="L30" title="4 of 6 branches missed.">        switch (genre.toLowerCase()) {</span>
 <span class="nc" id="L31">            default -&gt; this.genre = Genre.JAZZ;</span>
 <span class="nc" id="L32">            case &quot;classic&quot; -&gt; this.genre = Genre.CLASSIC;</span>
 <span class="nc" id="L33">            case &quot;hiphop&quot; -&gt; this.genre = Genre.HIPHOP;</span>
-<span class="nc" id="L34">            case &quot;rock&quot; -&gt; this.genre = Genre.ROCK;</span>
-<span class="nc" id="L35">            case &quot;pop&quot; -&gt; this.genre = Genre.POP;</span>
+<span class="fc" id="L34">            case &quot;rock&quot; -&gt; this.genre = Genre.ROCK;</span>
+<span class="fc" id="L35">            case &quot;pop&quot; -&gt; this.genre = Genre.POP;</span>
 <span class="nc" id="L36">            case &quot;rap&quot; -&gt; this.genre = Genre.RAP;</span>
         }
-<span class="nc" id="L38">    }</span>
+<span class="fc" id="L38">    }</span>
 
     public String toString() {
 <span class="nc" id="L41">        return super.toString() + &quot;, Genre = &quot; + getGenre() + &quot;\n&quot;;</span>

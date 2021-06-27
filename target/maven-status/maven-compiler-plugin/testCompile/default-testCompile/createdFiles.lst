@@ -1,3 +1,4 @@
 musichub\util\XMLHandlerTest.class
 musichub\util\PathValidationTest.class
+musichub\business\SongTest.class
 musichub\util\LogHandlerTest.class
