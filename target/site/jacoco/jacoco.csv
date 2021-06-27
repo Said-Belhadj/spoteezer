@@ -1,7 +1,7 @@
 GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
 spoteezer,musichub.util,PathValidation,0,17,0,0,0,4,0,2,0,2
 spoteezer,musichub.util,LogHandler,0,46,0,0,0,11,0,3,0,3
-spoteezer,musichub.util,XMLHandler,72,0,0,0,25,0,4,0,4,0
+spoteezer,musichub.util,XMLHandler,6,66,0,0,4,21,0,4,0,4
 spoteezer,musichub.business,Album,330,0,14,0,84,0,16,0,9,0
 spoteezer,musichub.business,SortByAuthor,9,0,0,0,2,0,2,0,2,0
 spoteezer,musichub.business,NoAlbumFoundException,4,0,0,0,2,0,1,0,1,0

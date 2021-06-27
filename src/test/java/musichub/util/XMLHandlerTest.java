@@ -10,11 +10,6 @@ public class XMLHandlerTest {
     final String DIR = System.getProperty("user.dir");
     final String JUNIT_FILE_PATH = DIR + "/files/JUnit.xml";
 
-/*    @Test
-    void testXMLHandlerClass() {
-            XMLHandler xmlHandler = new XMLHandler();
-    }*/
-
     @Test
     void testCreateXML() {
         XMLHandler xmlHandler = new XMLHandler(); //XML class
@@ -24,7 +19,12 @@ public class XMLHandlerTest {
 
     @Test
     void testParseXMLFile() {
+        final String PARSE_DIR = System.getProperty("user.dir");
+        final String PARSE_FILE_PATH = PARSE_DIR + "/files/parse_JUnit.xml";
         XMLHandler xmlHandler = new XMLHandler();
-        NodeList albumNodes = xmlHandler.parseXMLFile(JUNIT_FILE_PATH);
+        //wrong content of file resulting in an exception, will print it during test but it's normal
+        NodeList junitNodes = xmlHandler.parseXMLFile(JUNIT_FILE_PATH);
+        //right content of file
+        NodeList parseNodes = xmlHandler.parseXMLFile(PARSE_FILE_PATH);
     }
 }
