@@ -112,6 +112,7 @@ public final class Policy {
         printAgreement();
         Scanner scan = new Scanner(System.in);
         String choice = scan.nextLine();
+        choice = choice.toLowerCase();
 
         while (!choice.equals("y")) {
             switch (choice.charAt(0)) {
