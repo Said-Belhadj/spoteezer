@@ -340,25 +340,25 @@ public class MusicHub {
 
 <span class="nc" id="L341">    }</span>
 
-    public void searchAudioElement() throws UnsupportedAudioFileException, NoAlbumFoundException, LineUnavailableException, IOException {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println(&quot;Entrez le titre ou l'artiste de la musique que vous souhaitez chercher dans la base de données&quot;);
-        String word = scanner.next().toLowerCase(Locale.ROOT);
-        List&lt;AudioElement&gt; searchResult = new ArrayList&lt;&gt;();
-        for(AudioElement el : elements){
-            if(el.getTitle().toLowerCase(Locale.ROOT).contains(word) || el.getArtist().toLowerCase(Locale.ROOT).contains(word)){
-                searchResult.add(el);
-                System.out.println(el);
+    public void searchAudioElement() throws UnsupportedAudioFileException, NoAlbumFoundException, LineUnavailableException, IOException, NoElementFoundException {
+<span class="nc" id="L344">        Scanner scanner = new Scanner(System.in);</span>
+<span class="nc" id="L345">        System.out.println(&quot;Entrez le titre ou l'artiste de la musique que vous souhaitez chercher dans la base de données&quot;);</span>
+<span class="nc" id="L346">        String word = scanner.next().toLowerCase(Locale.ROOT);</span>
+<span class="nc" id="L347">        List&lt;AudioElement&gt; searchResult = new ArrayList&lt;&gt;();</span>
+<span class="nc bnc" id="L348" title="All 2 branches missed.">        for(AudioElement el : elements){</span>
+<span class="nc bnc" id="L349" title="All 4 branches missed.">            if(el.getTitle().toLowerCase(Locale.ROOT).contains(word) || el.getArtist().toLowerCase(Locale.ROOT).contains(word)){</span>
+<span class="nc" id="L350">                searchResult.add(el);</span>
+<span class="nc" id="L351">                System.out.println(el);</span>
             }
-        }
+<span class="nc" id="L353">        }</span>
 
-        if(searchResult.isEmpty()){
-            System.err.println(&quot;Aucun résultat pour votre recherche&quot;);
+<span class="nc bnc" id="L355" title="All 2 branches missed.">        if(searchResult.isEmpty()){</span>
+<span class="nc" id="L356">            throw new NoElementFoundException(&quot;Any result for your search&quot;);</span>
         }
-        if (searchResult.size()==1){
-            this.getAudioElement(searchResult, searchResult.get(0).getTitle());
+<span class="nc bnc" id="L358" title="All 2 branches missed.">        if (searchResult.size()==1){</span>
+<span class="nc" id="L359">            this.getAudioElement(searchResult, searchResult.get(0).getTitle());</span>
         }
-    }
+<span class="nc" id="L361">    }</span>
 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>
