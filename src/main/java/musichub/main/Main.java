@@ -246,7 +246,15 @@ public class Main {
                     break;
                 case 'r':
                     //search a music
-                    theHub.searchAudioElement();
+                    try {
+                        theHub.searchAudioElement();
+                    }
+                    catch (NoElementFoundException e){
+                        System.err.println(e.getMessage());
+                    }
+                    catch (java.io.FileNotFoundException e){
+                        System.err.println(e.getMessage()+" Please create a file with the extension .wav inside the song folder at root of the app");
+                    }
                     printAvailableCommands();
                 case 'o':
                     //consult the app logs
