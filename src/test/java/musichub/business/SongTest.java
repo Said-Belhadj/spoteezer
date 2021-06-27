@@ -23,14 +23,14 @@ public class SongTest {
 
 
     @Test
-    void testSongClasses() {
+    void testSongClass() {
         new Song(title, artist, length, uid, content, genre);
         new Song(title, artist, length, content, genre);
 
     }
 
     @Test
-    void testSongXml() {
+    void testSongClassXML() {
         NodeList audioelementsNodes = xmlHandler.parseXMLFile(ELEMENTS_FILE_PATH);
         Element audioElement = (Element) audioelementsNodes.item(1);
         new Song(audioElement);

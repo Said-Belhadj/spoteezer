@@ -13,89 +13,89 @@ public class PlayList {
     private final UUID uuid;
     private ArrayList&lt;UUID&gt; elementUUIDs;
 
-<span class="nc" id="L16">    public PlayList(String title, String id, ArrayList&lt;UUID&gt; elementUUIDs) {</span>
-<span class="nc" id="L17">        this.title = title;</span>
-<span class="nc" id="L18">        this.uuid = UUID.fromString(id);</span>
-<span class="nc" id="L19">        this.elementUUIDs = elementUUIDs;</span>
-<span class="nc" id="L20">    }</span>
+<span class="fc" id="L16">    public PlayList(String title, String id, ArrayList&lt;UUID&gt; elementUUIDs) {</span>
+<span class="fc" id="L17">        this.title = title;</span>
+<span class="fc" id="L18">        this.uuid = UUID.fromString(id);</span>
+<span class="fc" id="L19">        this.elementUUIDs = elementUUIDs;</span>
+<span class="fc" id="L20">    }</span>
 
-<span class="nc" id="L22">    public PlayList(String title) {</span>
-<span class="nc" id="L23">        this.title = title;</span>
-<span class="nc" id="L24">        this.uuid = UUID.randomUUID();</span>
-<span class="nc" id="L25">        this.elementUUIDs = new ArrayList&lt;&gt;();</span>
-<span class="nc" id="L26">    }</span>
+<span class="fc" id="L22">    public PlayList(String title) {</span>
+<span class="fc" id="L23">        this.title = title;</span>
+<span class="fc" id="L24">        this.uuid = UUID.randomUUID();</span>
+<span class="fc" id="L25">        this.elementUUIDs = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L26">    }</span>
 
-<span class="nc" id="L28">    public PlayList(Element xmlElement) {</span>
+<span class="fc" id="L28">    public PlayList(Element xmlElement) {</span>
         {
-<span class="nc" id="L30">            this.title = xmlElement.getElementsByTagName(&quot;title&quot;).item(0).getTextContent();</span>
+<span class="fc" id="L30">            this.title = xmlElement.getElementsByTagName(&quot;title&quot;).item(0).getTextContent();</span>
 
-<span class="nc" id="L32">            String uuid = null;</span>
+<span class="fc" id="L32">            String uuid = null;</span>
             try {
-<span class="nc" id="L34">                uuid = xmlElement.getElementsByTagName(&quot;UUID&quot;).item(0).getTextContent();</span>
+<span class="fc" id="L34">                uuid = xmlElement.getElementsByTagName(&quot;UUID&quot;).item(0).getTextContent();</span>
 <span class="nc" id="L35">            } catch (Exception ex) {</span>
 <span class="nc" id="L36">                System.out.println(&quot;Empty playlist UUID, will create a new one&quot;);</span>
-<span class="nc" id="L37">            }</span>
-<span class="nc bnc" id="L38" title="All 4 branches missed.">            if ((uuid == null) || (uuid.isEmpty()))</span>
+<span class="fc" id="L37">            }</span>
+<span class="pc bpc" id="L38" title="2 of 4 branches missed.">            if ((uuid == null) || (uuid.isEmpty()))</span>
 <span class="nc" id="L39">                this.uuid = UUID.randomUUID();</span>
-<span class="nc" id="L40">            else this.uuid = UUID.fromString(uuid);</span>
+<span class="fc" id="L40">            else this.uuid = UUID.fromString(uuid);</span>
 
             //parse list of elements:
-<span class="nc" id="L43">            Node elementsElement = xmlElement.getElementsByTagName(&quot;elements&quot;).item(0);</span>
-<span class="nc" id="L44">            NodeList elementUUIDNodes = elementsElement.getChildNodes();</span>
-<span class="nc bnc" id="L45" title="All 2 branches missed.">            if (elementUUIDNodes == null) return;</span>
+<span class="fc" id="L43">            Node elementsElement = xmlElement.getElementsByTagName(&quot;elements&quot;).item(0);</span>
+<span class="fc" id="L44">            NodeList elementUUIDNodes = elementsElement.getChildNodes();</span>
+<span class="pc bpc" id="L45" title="1 of 2 branches missed.">            if (elementUUIDNodes == null) return;</span>
 
-<span class="nc" id="L47">            this.elementUUIDs = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L47">            this.elementUUIDs = new ArrayList&lt;&gt;();</span>
 
 
-<span class="nc bnc" id="L50" title="All 2 branches missed.">            for (int i = 0; i &lt; elementUUIDNodes.getLength(); i++) {</span>
-<span class="nc bnc" id="L51" title="All 2 branches missed.">                if (elementUUIDNodes.item(i).getNodeType() == Node.ELEMENT_NODE) {</span>
-<span class="nc" id="L52">                    Element elementElement = (Element) elementUUIDNodes.item(i);</span>
-<span class="nc bnc" id="L53" title="All 2 branches missed.">                    if (elementElement.getNodeName().equals(&quot;UUID&quot;)) {</span>
+<span class="fc bfc" id="L50" title="All 2 branches covered.">            for (int i = 0; i &lt; elementUUIDNodes.getLength(); i++) {</span>
+<span class="fc bfc" id="L51" title="All 2 branches covered.">                if (elementUUIDNodes.item(i).getNodeType() == Node.ELEMENT_NODE) {</span>
+<span class="fc" id="L52">                    Element elementElement = (Element) elementUUIDNodes.item(i);</span>
+<span class="pc bpc" id="L53" title="1 of 2 branches missed.">                    if (elementElement.getNodeName().equals(&quot;UUID&quot;)) {</span>
                         try {
-<span class="nc" id="L55">                            this.addElement(UUID.fromString(elementElement.getTextContent()));</span>
+<span class="fc" id="L55">                            this.addElement(UUID.fromString(elementElement.getTextContent()));</span>
 <span class="nc" id="L56">                        } catch (Exception ex) {</span>
 <span class="nc" id="L57">                            ex.printStackTrace();</span>
-<span class="nc" id="L58">                        }</span>
+<span class="fc" id="L58">                        }</span>
                     }
                 }
             }
         }
-<span class="nc" id="L63">    }</span>
+<span class="fc" id="L63">    }</span>
 
     public void addElement(UUID element) {
-<span class="nc" id="L66">        elementUUIDs.add(element);</span>
-<span class="nc" id="L67">    }</span>
+<span class="fc" id="L66">        elementUUIDs.add(element);</span>
+<span class="fc" id="L67">    }</span>
 
     public ArrayList&lt;UUID&gt; getElements() {
-<span class="nc" id="L70">        return elementUUIDs;</span>
+<span class="fc" id="L70">        return elementUUIDs;</span>
     }
 
     public String getTitle() {
-<span class="nc" id="L74">        return title;</span>
+<span class="fc" id="L74">        return title;</span>
     }
 
     public void createXMLElement(Document document, Element parentElement) {
-<span class="nc" id="L78">        Element playlistElement = document.createElement(&quot;playlist&quot;);</span>
-<span class="nc" id="L79">        parentElement.appendChild(playlistElement);</span>
+<span class="fc" id="L78">        Element playlistElement = document.createElement(&quot;playlist&quot;);</span>
+<span class="fc" id="L79">        parentElement.appendChild(playlistElement);</span>
 
-<span class="nc" id="L81">        Element nameElement = document.createElement(&quot;title&quot;);</span>
-<span class="nc" id="L82">        nameElement.appendChild(document.createTextNode(title));</span>
-<span class="nc" id="L83">        playlistElement.appendChild(nameElement);</span>
+<span class="fc" id="L81">        Element nameElement = document.createElement(&quot;title&quot;);</span>
+<span class="fc" id="L82">        nameElement.appendChild(document.createTextNode(title));</span>
+<span class="fc" id="L83">        playlistElement.appendChild(nameElement);</span>
 
-<span class="nc" id="L85">        Element UUIDElement = document.createElement(&quot;UUID&quot;);</span>
-<span class="nc" id="L86">        UUIDElement.appendChild(document.createTextNode(uuid.toString()));</span>
-<span class="nc" id="L87">        playlistElement.appendChild(UUIDElement);</span>
+<span class="fc" id="L85">        Element UUIDElement = document.createElement(&quot;UUID&quot;);</span>
+<span class="fc" id="L86">        UUIDElement.appendChild(document.createTextNode(uuid.toString()));</span>
+<span class="fc" id="L87">        playlistElement.appendChild(UUIDElement);</span>
 
 
-<span class="nc" id="L90">        Element elementsElement = document.createElement(&quot;elements&quot;);</span>
-<span class="nc bnc" id="L91" title="All 2 branches missed.">        for (UUID currentUUID : this.elementUUIDs) {</span>
+<span class="fc" id="L90">        Element elementsElement = document.createElement(&quot;elements&quot;);</span>
+<span class="pc bpc" id="L91" title="1 of 2 branches missed.">        for (UUID currentUUID : this.elementUUIDs) {</span>
 
 <span class="nc" id="L93">            Element elementUUIDElement = document.createElement(&quot;UUID&quot;);</span>
 <span class="nc" id="L94">            elementUUIDElement.appendChild(document.createTextNode(currentUUID.toString()));</span>
 <span class="nc" id="L95">            elementsElement.appendChild(elementUUIDElement);</span>
 <span class="nc" id="L96">        }</span>
-<span class="nc" id="L97">        playlistElement.appendChild(elementsElement);</span>
-<span class="nc" id="L98">    }</span>
+<span class="fc" id="L97">        playlistElement.appendChild(elementsElement);</span>
+<span class="fc" id="L98">    }</span>
 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>
