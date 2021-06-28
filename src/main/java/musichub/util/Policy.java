@@ -1,5 +1,6 @@
 package musichub.util;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 /**
@@ -103,6 +104,11 @@ public final class Policy {
                     choice = scan.nextLine().toLowerCase();
                 }
             }
+        }
+        try {
+            LogHandler.write("Terms accepted by the user.", "INFO");
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
