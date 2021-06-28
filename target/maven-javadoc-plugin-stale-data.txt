@@ -39,28 +39,29 @@
 'C:/Users/SoftA/Documents/spoteezer/src/main/java/musichub/main/Main.java'
 'C:/Users/SoftA/Documents/spoteezer/src/main/java/musichub/util/LogHandler.java'
 'C:/Users/SoftA/Documents/spoteezer/src/main/java/musichub/util/PathValidation.java'
+'C:/Users/SoftA/Documents/spoteezer/src/main/java/musichub/util/Policy.java'
 'C:/Users/SoftA/Documents/spoteezer/src/main/java/musichub/util/XMLHandler.java'
 C:\Users\SoftA\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.0.2\junit-jupiter-api-5.0.2.jar = 1624015816799
 C:\Users\SoftA\.m2\repository\org\opentest4j\opentest4j\1.0.0\opentest4j-1.0.0.jar = 1624015816785
 C:\Users\SoftA\.m2\repository\org\junit\platform\junit-platform-commons\1.0.2\junit-platform-commons-1.0.2.jar = 1624015816770
 C:\Users\SoftA\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.0.2\junit-jupiter-engine-5.0.2.jar = 1624015816790
 C:\Users\SoftA\.m2\repository\org\junit\platform\junit-platform-engine\1.0.2\junit-platform-engine-1.0.2.jar = 1624015816783
-C:\Users\SoftA\Documents\spoteezer\src\main\java = 1624708123937
-C:\Users\SoftA\Documents\spoteezer\target\site\apidocs\allclasses-index.html = 1624793029572
-C:\Users\SoftA\Documents\spoteezer\target\site\apidocs\allpackages-index.html = 1624793029575
-C:\Users\SoftA\Documents\spoteezer\target\site\apidocs\element-list = 1624793029464
-C:\Users\SoftA\Documents\spoteezer\target\site\apidocs\help-doc.html = 1624793029599
-C:\Users\SoftA\Documents\spoteezer\target\site\apidocs\index-all.html = 1624793029596
-C:\Users\SoftA\Documents\spoteezer\target\site\apidocs\index.html = 1624793029553
-C:\Users\SoftA\Documents\spoteezer\target\site\apidocs\jquery-ui.overrides.css = 1624793029620
-C:\Users\SoftA\Documents\spoteezer\target\site\apidocs\member-search-index.js = 1624793029579
-C:\Users\SoftA\Documents\spoteezer\target\site\apidocs\module-search-index.js = 1624793029576
-C:\Users\SoftA\Documents\spoteezer\target\site\apidocs\overview-summary.html = 1624793029597
-C:\Users\SoftA\Documents\spoteezer\target\site\apidocs\overview-tree.html = 1624793029548
-C:\Users\SoftA\Documents\spoteezer\target\site\apidocs\package-search-index.js = 1624793029577
-C:\Users\SoftA\Documents\spoteezer\target\site\apidocs\script.js = 1624793029602
-C:\Users\SoftA\Documents\spoteezer\target\site\apidocs\search.js = 1624793029605
-C:\Users\SoftA\Documents\spoteezer\target\site\apidocs\serialized-form.html = 1624793029489
-C:\Users\SoftA\Documents\spoteezer\target\site\apidocs\stylesheet.css = 1624793029601
-C:\Users\SoftA\Documents\spoteezer\target\site\apidocs\tag-search-index.js = 1624793029580
-C:\Users\SoftA\Documents\spoteezer\target\site\apidocs\type-search-index.js = 1624793029578
+C:\Users\SoftA\Documents\spoteezer\src\main\java = 1624912572607
+C:\Users\SoftA\Documents\spoteezer\target\site\apidocs\allclasses-index.html = 1624916173953
+C:\Users\SoftA\Documents\spoteezer\target\site\apidocs\allpackages-index.html = 1624916173955
+C:\Users\SoftA\Documents\spoteezer\target\site\apidocs\element-list = 1624916173845
+C:\Users\SoftA\Documents\spoteezer\target\site\apidocs\help-doc.html = 1624916173978
+C:\Users\SoftA\Documents\spoteezer\target\site\apidocs\index-all.html = 1624916173975
+C:\Users\SoftA\Documents\spoteezer\target\site\apidocs\index.html = 1624916173935
+C:\Users\SoftA\Documents\spoteezer\target\site\apidocs\jquery-ui.overrides.css = 1624916173996
+C:\Users\SoftA\Documents\spoteezer\target\site\apidocs\member-search-index.js = 1624916173958
+C:\Users\SoftA\Documents\spoteezer\target\site\apidocs\module-search-index.js = 1624916173956
+C:\Users\SoftA\Documents\spoteezer\target\site\apidocs\overview-summary.html = 1624916173975
+C:\Users\SoftA\Documents\spoteezer\target\site\apidocs\overview-tree.html = 1624916173932
+C:\Users\SoftA\Documents\spoteezer\target\site\apidocs\package-search-index.js = 1624916173957
+C:\Users\SoftA\Documents\spoteezer\target\site\apidocs\script.js = 1624916173981
+C:\Users\SoftA\Documents\spoteezer\target\site\apidocs\search.js = 1624916173983
+C:\Users\SoftA\Documents\spoteezer\target\site\apidocs\serialized-form.html = 1624916173866
+C:\Users\SoftA\Documents\spoteezer\target\site\apidocs\stylesheet.css = 1624916173979
+C:\Users\SoftA\Documents\spoteezer\target\site\apidocs\tag-search-index.js = 1624916173959
+C:\Users\SoftA\Documents\spoteezer\target\site\apidocs\type-search-index.js = 1624916173957
