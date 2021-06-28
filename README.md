@@ -1,6 +1,6 @@
 # Spoteezer
 
-## The Team
+## Who ?
 
 This project was done by a team of 3 amazing people:
 
@@ -8,8 +8,10 @@ This project was done by a team of 3 amazing people:
 + Saïd BELHADJ
 + Anthony BOULANT
 
-## The project
+## Why ?
 
 This project is being done as part of our sixth semester at the engineering school, the ESIEA.
 
-## W.I.P. ...
+## Features
+
+## Issues
