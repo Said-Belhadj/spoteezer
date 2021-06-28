@@ -54,6 +54,7 @@ public class Main {
                     	List<Song> songs = theHub.getAlbumSongsSortedByGenre(albumTitle);
                         System.out.println(songs);
                     } catch (NoAlbumFoundException ex) {
+                        LogHandler.write("No album found with the requested title", "WARNING");
                         System.out.println("No album found with the requested title " + ex.getMessage());
                     }
                     printAvailableCommands();
@@ -71,6 +72,7 @@ public class Main {
                         String song = scan.nextLine();
                         theHub.getAudioElement(songs, song);
                     } catch (NoAlbumFoundException ex) {
+                        LogHandler.write("No album found with the requested title", "WARNING");
                         System.out.println("No album found with the requested title " + ex.getMessage());
                     }
                     printAvailableCommands();
@@ -121,6 +123,7 @@ public class Main {
                     System.out.println("New element list: ");
                     Iterator<AudioElement> it = theHub.elements();
                     while (it.hasNext()) System.out.println(it.next().getTitle());
+                    LogHandler.write("Song successfully created", "INFO");
                     System.out.println("Song created!");
                     printAvailableCommands();
                     choice = scan.nextLine();
@@ -141,6 +144,7 @@ public class Main {
                     System.out.println("New list of albums: ");
                     Iterator<Album> ita = theHub.albums();
                     while (ita.hasNext()) System.out.println(ita.next().getTitle());
+                    LogHandler.write("Album successfully created", "INFO");
                     System.out.println("Album created!");
                     printAvailableCommands();
                     choice = scan.nextLine();
@@ -168,6 +172,7 @@ public class Main {
                     } catch (NoAlbumFoundException | NoElementFoundException ex) {
                         System.out.println(ex.getMessage());
                     }
+                    LogHandler.write("Song successfully added to the album", "INFO");
                     System.out.println("Song added to the album!");
                     printAvailableCommands();
                     choice = scan.nextLine();
@@ -189,6 +194,7 @@ public class Main {
                     String bLanguage = scan.nextLine();
                     AudioBook b = new AudioBook(bTitle, bArtist, bLength, bContent, bLanguage, bCategory);
                     theHub.addElement(b);
+                    LogHandler.write("Audiobook successfully created", "INFO");
                     System.out.println("Audiobook created! New element list: ");
                     Iterator<AudioElement> itl = theHub.elements();
                     while (itl.hasNext()) System.out.println(itl.next().getTitle());
@@ -227,6 +233,7 @@ public class Main {
                         System.out.println("Type y to add a new one, n to end");
                         choice = scan.nextLine();
                     }
+                    LogHandler.write("Playlist successfully created", "INFO");
                     System.out.println("Playlist created!");
                     printAvailableCommands();
                     choice = scan.nextLine();
@@ -245,6 +252,7 @@ public class Main {
                     } catch (NoPlayListFoundException ex) {
                         System.out.println(ex.getMessage());
                     }
+                    LogHandler.write("Playlist successfully deleted", "INFO");
                     System.out.println("Playlist deleted!");
                     printAvailableCommands();
                     choice = scan.nextLine();
@@ -254,6 +262,7 @@ public class Main {
                     theHub.saveElements();
                     theHub.saveAlbums();
                     theHub.savePlayLists();
+                    LogHandler.write("Elements, albums and playlists successfully saved", "INFO");
                     System.out.println("Elements, albums and playlists saved!");
                     printAvailableCommands();
                     choice = scan.nextLine();
@@ -267,9 +276,11 @@ public class Main {
                         System.err.println(e.getMessage());
                     }
                     catch (java.io.FileNotFoundException e){
-                        System.err.println(e.getMessage()+" Please create a file with the extension .wav inside the song folder at root of the app");
+                        LogHandler.write("Please create a file with the extension .wav inside the song folder at root of the app", "ERROR");
+                        System.err.println(e.getMessage() + " Please create a file with the extension .wav inside the song folder at root of the app");
                     }
                     printAvailableCommands();
+                    choice = scan.nextLine();
                     break;
                 case 'o':
                     //consult the app logs
@@ -289,6 +300,7 @@ public class Main {
                         String song = scan.nextLine();
                         theHub.getAudioElement(songs, song);
                     } catch (NoPlayListFoundException ex) {
+                        LogHandler.write("No playlist found with the requested title", "WARNING");
                         System.out.println("No playlist found with the requested title " + ex.getMessage());
                     }
                     printAvailableCommands();

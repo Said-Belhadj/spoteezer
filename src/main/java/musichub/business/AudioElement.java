@@ -1,5 +1,6 @@
 package musichub.business;
 
+import musichub.util.LogHandler;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
@@ -107,12 +108,21 @@ public abstract class AudioElement {
             action = action.toUpperCase();
 
             switch (action) {
-                case "S", "Q" -> clip.stop();
-                case "P" -> clip.start();
-                case "R" -> clip.setMicrosecondPosition(0);
+                case "S", "Q" -> {
+                    clip.stop();
+                    LogHandler.write("Music stopped", "INFO");
+                }
+                case "P" -> {
+                    clip.start();
+                    LogHandler.write("Music started", "INFO");
+                }
+                case "R" -> {
+                    clip.setMicrosecondPosition(0);
+                    LogHandler.write("Music reseted", "INFO");
+                }
                 default -> System.out.println("try again");
             }
-            System.out.println("You stoped the Audio element");
+            System.out.println("You stopped the Audio element");
         }
     	
     	clip.close();
