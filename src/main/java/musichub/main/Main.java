@@ -277,6 +277,23 @@ public class Main {
                     System.out.println("Type h for available commands");
                     choice = scan.nextLine();
                     break;
+                case 'm':
+                    //songs of a playlist
+                    System.out.println("Songs of a playlist will be displayed; enter the playlist name, available playlists are:");
+                    System.out.println(theHub.getPlayListsTitles());
+
+                    playListTitle = scan.nextLine();
+                    try {
+                        List<AudioElement> songs = theHub.getPlayListSongs(playListTitle);
+                        System.out.println(theHub.getPlayListSongs(playListTitle));
+                        String song = scan.nextLine();
+                        theHub.getAudioElement(songs, song);
+                    } catch (NoPlayListFoundException ex) {
+                        System.out.println("No playlist found with the requested title " + ex.getMessage());
+                    }
+                    printAvailableCommands();
+                    choice = scan.nextLine();
+                    break;
                 default:
 
                     break;
@@ -296,6 +313,7 @@ public class Main {
         System.out.println("+: add a song to an album");
         System.out.println("l: add a new audiobook");
         System.out.println("p: create a new playlist from existing songs and audio books");
+        System.out.println("m: display songs of a playlist");
         System.out.println("-: delete an existing playlist");
         System.out.println("s: save elements, albums, playlists");
         System.out.println("o: consult the app logs");
