@@ -99,7 +99,8 @@ public class Main {
                     if (!isPathValid(content)) {
                         String logMsg = "The music file was not found with the path you've provided or the extension is not .wav";
                         LogHandler.write(logMsg, "WARNING"); //write a line in the log file
-                        System.out.println(logMsg + "\nType h for available commands");
+                        System.err.println(logMsg);
+                        System.out.println("Type h for available commands");
                         choice = scan.nextLine();
                         break;
                     }
