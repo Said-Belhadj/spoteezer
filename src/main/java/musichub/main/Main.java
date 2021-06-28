@@ -258,6 +258,7 @@ public class Main {
                         System.err.println(e.getMessage()+" Please create a file with the extension .wav inside the song folder at root of the app");
                     }
                     printAvailableCommands();
+                    break;
                 case 'o':
                     //consult the app logs
                     LogHandler.read();
