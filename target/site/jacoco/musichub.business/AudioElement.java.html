@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>AudioElement.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">spoteezer</a> &gt; <a href="index.source.html" class="el_package">musichub.business</a> &gt; <span class="el_source">AudioElement.java</span></div><h1>AudioElement.java</h1><pre class="source lang-java linenums">package musichub.business;
+
+import musichub.util.LogHandler;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+
+import javax.sound.sampled.*;
+import java.io.File;
+import java.io.IOException;
+import java.util.Scanner;
+import java.util.UUID;
+
+public abstract class AudioElement {
+    protected String title;
+    protected String artist;
+    protected int lengthInSeconds;
+    protected UUID uuid;
+    protected String content;
+
+<span class="fc" id="L20">    public AudioElement(String title, String artist, int lengthInSeconds, String id, String content) {</span>
+<span class="fc" id="L21">        this.title = title;</span>
+<span class="fc" id="L22">        this.artist = artist;</span>
+<span class="fc" id="L23">        this.lengthInSeconds = lengthInSeconds;</span>
+<span class="fc" id="L24">        this.uuid = UUID.fromString(id);</span>
+<span class="fc" id="L25">        this.content = content;</span>
+<span class="fc" id="L26">    }</span>
+
+<span class="fc" id="L28">    public AudioElement(String title, String artist, int lengthInSeconds, String content) {</span>
+<span class="fc" id="L29">        this.title = title;</span>
+<span class="fc" id="L30">        this.artist = artist;</span>
+<span class="fc" id="L31">        this.lengthInSeconds = lengthInSeconds;</span>
+<span class="fc" id="L32">        this.content = content;</span>
+<span class="fc" id="L33">        this.uuid = UUID.randomUUID();</span>
+<span class="fc" id="L34">    }</span>
+
+<span class="fc" id="L36">    public AudioElement(Element xmlElement) {</span>
+        {
+<span class="fc" id="L38">            title = xmlElement.getElementsByTagName(&quot;title&quot;).item(0).getTextContent();</span>
+<span class="fc" id="L39">            artist = xmlElement.getElementsByTagName(&quot;artist&quot;).item(0).getTextContent();</span>
+<span class="fc" id="L40">            lengthInSeconds = Integer.parseInt(xmlElement.getElementsByTagName(&quot;length&quot;).item(0).getTextContent());</span>
+<span class="fc" id="L41">            content = xmlElement.getElementsByTagName(&quot;content&quot;).item(0).getTextContent();</span>
+<span class="fc" id="L42">            String uuid = null;</span>
+            try {
+<span class="fc" id="L44">                uuid = xmlElement.getElementsByTagName(&quot;UUID&quot;).item(0).getTextContent();</span>
+<span class="nc" id="L45">            } catch (Exception ex) {</span>
+<span class="nc" id="L46">                System.out.println(&quot;Empty element UUID, will create a new one&quot;);</span>
+<span class="fc" id="L47">            }</span>
+<span class="pc bpc" id="L48" title="2 of 4 branches missed.">            if ((uuid == null) || (uuid.isEmpty()))</span>
+<span class="nc" id="L49">                this.uuid = UUID.randomUUID();</span>
+<span class="fc" id="L50">            else this.uuid = UUID.fromString(uuid);</span>
+        }
+<span class="fc" id="L52">    }</span>
+
+    public UUID getUUID() {
+<span class="nc" id="L55">        return this.uuid;</span>
+    }
+
+    public String getArtist() {
+<span class="nc" id="L59">        return this.artist;</span>
+    }
+
+    public String getTitle() {
+<span class="nc" id="L63">        return this.title;</span>
+    }
+
+    public String toString() {
+<span class="fc" id="L67">        return &quot;Title = &quot; + this.title + &quot;, Artist = &quot; + this.artist + &quot;, Length = &quot; + this.lengthInSeconds + &quot;, Content = &quot; + this.content;</span>
+    }
+
+    public void createXMLElement(Document document, Element parentElement) {
+<span class="fc" id="L71">        Element nameElement = document.createElement(&quot;title&quot;);</span>
+<span class="fc" id="L72">        nameElement.appendChild(document.createTextNode(title));</span>
+<span class="fc" id="L73">        parentElement.appendChild(nameElement);</span>
+
+<span class="fc" id="L75">        Element artistElement = document.createElement(&quot;artist&quot;);</span>
+<span class="fc" id="L76">        artistElement.appendChild(document.createTextNode(artist));</span>
+<span class="fc" id="L77">        parentElement.appendChild(artistElement);</span>
+
+<span class="fc" id="L79">        Element lengthElement = document.createElement(&quot;length&quot;);</span>
+<span class="fc" id="L80">        lengthElement.appendChild(document.createTextNode(Integer.valueOf(lengthInSeconds).toString()));</span>
+<span class="fc" id="L81">        parentElement.appendChild(lengthElement);</span>
+
+<span class="fc" id="L83">        Element UUIDElement = document.createElement(&quot;UUID&quot;);</span>
+<span class="fc" id="L84">        UUIDElement.appendChild(document.createTextNode(uuid.toString()));</span>
+<span class="fc" id="L85">        parentElement.appendChild(UUIDElement);</span>
+
+<span class="fc" id="L87">        Element contentElement = document.createElement(&quot;content&quot;);</span>
+<span class="fc" id="L88">        contentElement.appendChild(document.createTextNode(content));</span>
+<span class="fc" id="L89">        parentElement.appendChild(contentElement);</span>
+
+<span class="fc" id="L91">    }</span>
+    
+    public void manageAudioElement() throws UnsupportedAudioFileException, IOException, LineUnavailableException {
+    	
+<span class="nc" id="L95">    	Scanner scanner = new Scanner(System.in); </span>
+    	
+<span class="nc" id="L97">    	File file = new File(this.content);</span>
+<span class="nc" id="L98">    	AudioInputStream audioStream = AudioSystem.getAudioInputStream(file);</span>
+<span class="nc" id="L99">    	Clip clip = AudioSystem.getClip();</span>
+<span class="nc" id="L100">    	clip.open(audioStream);</span>
+    	
+<span class="nc" id="L102">    	String action = &quot;&quot;;</span>
+    			
+<span class="nc bnc" id="L104" title="All 2 branches missed.">    	while(!action.equals(&quot;Q&quot;)) {</span>
+<span class="nc" id="L105">            System.out.println(&quot;P = Play \b S = Stop \b R = Reset \b Q = Quit&quot;);</span>
+<span class="nc" id="L106">            System.out.println(&quot;Enter your choice&quot;);</span>
+<span class="nc" id="L107">            action = scanner.next();</span>
+<span class="nc" id="L108">            action = action.toUpperCase();</span>
+
+<span class="nc bnc" id="L110" title="All 4 branches missed.">            switch (action) {</span>
+<span class="nc" id="L111">                case &quot;S&quot;, &quot;Q&quot; -&gt; {</span>
+<span class="nc" id="L112">                    clip.stop();</span>
+<span class="nc" id="L113">                    LogHandler.write(&quot;Music stopped&quot;, &quot;INFO&quot;);</span>
+                }
+<span class="nc" id="L115">                case &quot;P&quot; -&gt; {</span>
+<span class="nc" id="L116">                    clip.start();</span>
+<span class="nc" id="L117">                    LogHandler.write(&quot;Music started&quot;, &quot;INFO&quot;);</span>
+                }
+<span class="nc" id="L119">                case &quot;R&quot; -&gt; {</span>
+<span class="nc" id="L120">                    clip.setMicrosecondPosition(0);</span>
+<span class="nc" id="L121">                    LogHandler.write(&quot;Music reseted&quot;, &quot;INFO&quot;);</span>
+                }
+<span class="nc" id="L123">                default -&gt; System.out.println(&quot;try again&quot;);</span>
+            }
+<span class="nc" id="L125">            System.out.println(&quot;You stopped the Audio element&quot;);</span>
+        }
+    	
+<span class="nc" id="L128">    	clip.close();</span>
+    
+<span class="nc" id="L130">    }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

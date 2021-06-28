@@ -1,1 +1,1 @@
-java -classpath bin musichub.main.Main
+java -jar target/spoteezer-0.1.0.jar

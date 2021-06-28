@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <playlists>
     <playlist>
         <title>my favourite songs</title>
@@ -12,9 +12,9 @@
         <title>my third playlist</title>
         <UUID>23173338-8b6e-4174-af71-2fe8eef705da</UUID>
         <elements>
-            <UUID>bbe99998-1be6-4a40-8bf0-6a7fce9087c9</UUID>
-            <UUID>6b834132-0a30-4b83-9835-814121b963a1</UUID>
-            <UUID>66d277ca-cbc4-471c-a07e-082362275bcc</UUID>
+            <UUID>21d277ca-cbc4-471c-a07e-082363375bcc</UUID>
+            <UUID>31d277ca-cbc4-471c-a07e-082363375bcc</UUID>
+            <UUID>61d277ca-cbc4-471c-a07e-082363375bcc</UUID>
         </elements>
     </playlist>
 </playlists>

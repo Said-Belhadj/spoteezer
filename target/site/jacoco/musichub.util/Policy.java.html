@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Policy.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">spoteezer</a> &gt; <a href="index.source.html" class="el_package">musichub.util</a> &gt; <span class="el_source">Policy.java</span></div><h1>Policy.java</h1><pre class="source lang-java linenums">package musichub.util;
+
+import java.io.IOException;
+import java.util.Scanner;
+
+/**
+ * Class offering methods to prompt a policy agreement form to the user.
+ *
+ * @author Anthony BOULANT
+ * @version 1.0
+ */
+
+public final class Policy {
+
+    /**
+     * Method that just throws an AssertionError if the class is called
+     *
+     * @throws AssertionError you can't instantiate this class
+     * @author Anthony BOULANT
+     */
+
+<span class="nc" id="L22">    public Policy() {</span>
+<span class="nc" id="L23">        throw new AssertionError(&quot;You just can't instantiate this class.&quot;);</span>
+    }
+
+    /**
+     * Method prompting the whole policy agreement process
+     *
+     * @author Anthony BOULANT
+     */
+    public static void showTerm() {
+
+<span class="nc" id="L33">        String termsAndConditions = &quot;&quot;&quot;</span>
+                Terms and Conditions
+                In using this website you are deemed to have read and agreed to the following terms and conditions:
+                Privacy Statement
+                We are committed to protecting your privacy. Authorized employees within the company on a need to know basis only use any information collected from individual customers. We constantly review our systems and data to ensure the best possible service to our customers. Parliament has created specific offences for unauthorised actions against computer systems and data. We will investigate any such actions with a view to prosecuting and/or taking civil proceedings to recover damages against those responsible
+                These terms and conditions form part of the Agreement between the Client and ourselves. Your accessing of this website and/or undertaking of a booking or Agreement indicates your understanding, agreement to and acceptance, of the Disclaimer Notice and the full Terms and Conditions contained herein. Your statutory Consumer Rights are unaffected.   s
+                © Company Name 2021 All Rights Reserved
+                &quot;&quot;&quot;;
+
+<span class="nc" id="L42">        printAgreement();</span>
+<span class="nc" id="L43">        Scanner scan = new Scanner(System.in);</span>
+<span class="nc" id="L44">        String choice = scan.nextLine().toLowerCase();</span>
+
+<span class="nc bnc" id="L46" title="All 2 branches missed.">        while (!choice.equals(&quot;y&quot;)) {</span>
+<span class="nc bnc" id="L47" title="All 3 branches missed.">            switch (choice.charAt(0)) {</span>
+<span class="nc" id="L48">                case 'n' -&gt; System.exit(0);</span>
+<span class="nc" id="L49">                case 'r' -&gt; {</span>
+<span class="nc" id="L50">                    System.out.println(termsAndConditions);</span>
+<span class="nc" id="L51">                    printAgreement();</span>
+<span class="nc" id="L52">                    choice = scan.nextLine().toLowerCase();</span>
+                }
+<span class="nc" id="L54">                default -&gt; {</span>
+<span class="nc" id="L55">                    printAgreement();</span>
+<span class="nc" id="L56">                    choice = scan.nextLine().toLowerCase();</span>
+                }
+            }
+        }
+        try {
+<span class="nc" id="L61">            LogHandler.write(&quot;Terms accepted by the user.&quot;, &quot;INFO&quot;);</span>
+<span class="nc" id="L62">        } catch (IOException e) {</span>
+<span class="nc" id="L63">            e.printStackTrace();</span>
+<span class="nc" id="L64">        }</span>
+<span class="nc" id="L65">    }</span>
+
+    /**
+     * Method printing the commands the user can use.
+     *
+     * @author Anthony BOULANT
+     */
+    private static void printAgreement() {
+<span class="nc" id="L73">        System.out.println(&quot;By using our app, do you accept our Terms and Conditions ?&quot;);</span>
+<span class="nc" id="L74">        System.out.println(&quot;[YES : y    NO :  n    READ : r]&quot;);</span>
+<span class="nc" id="L75">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

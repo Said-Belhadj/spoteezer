@@ -1,0 +1,7 @@
+musichub\business\CategoryTest.class
+musichub\util\PathValidationTest.class
+musichub\business\SongTest.class
+musichub\business\LanguageTest.class
+musichub\util\XMLHandlerTest.class
+musichub\business\PlayListTest.class
+musichub\util\LogHandlerTest.class

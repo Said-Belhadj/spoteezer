@@ -1,0 +1,48 @@
+[yyyy-MM-dd HH:mm:ss.SSS] TYPE: Message
+[2021-06-27 13:23:40.286] TEST: JUnit test
+[2021-06-28 18:33:51.708] ERROR: You've not provided a number for the length.
+[2021-06-28 18:37:56.051] ERROR: The music file cannot be found with the path you've provided or the extension is not .wav
+[2021-06-28 20:04:37.592] INFO: Terms accepted by the user.
+[2021-06-28 20:07:42.232] INFO: Terms accepted by the user.
+[2021-06-28 20:07:45.175] WARNING: No album found with the requested title
+[2021-06-28 20:15:32.074] INFO: Terms accepted by the user.
+[2021-06-28 20:15:37.695] ERROR: The music file cannot be found with the path you've provided or the extension is not .wav
+[2021-06-28 20:15:41.873] INFO: Playlist successfully deleted
+[2021-06-28 20:15:52.733] INFO: Playlist successfully deleted
+[2021-06-28 20:16:00.783] INFO: Playlist successfully created
+[2021-06-28 20:16:13.904] INFO: Terms accepted by the user.
+[2021-06-28 20:16:46.773] INFO: Song successfully added to the album
+[2021-06-28 20:22:21.365] INFO: Terms accepted by the user.
+[2021-06-28 20:22:29.053] INFO: Music started
+[2021-06-28 20:22:32.131] INFO: Music started
+[2021-06-28 20:22:33.812] INFO: Music started
+[2021-06-28 20:22:36.089] INFO: Music reset
+[2021-06-28 20:22:37.044] INFO: Music stopped
+[2021-06-28 20:23:35.383] INFO: Music stopped
+[2021-06-28 20:25:57.365] INFO: Music stopped
+[2021-06-28 20:26:27.681] INFO: Music stopped
+[2021-06-28 20:26:39.722] INFO: Music started
+[2021-06-28 20:26:43.114] INFO: Music stopped
+[2021-06-28 20:26:44.358] INFO: Music stopped
+[2021-06-28 20:27:19.435] INFO: Terms accepted by the user.
+[2021-06-28 20:27:27.853] INFO: Music started
+[2021-06-28 20:27:29.052] INFO: Music stopped
+[2021-06-28 20:27:29.756] INFO: Music stopped
+[2021-06-28 20:28:43.556] INFO: Terms accepted by the user.
+[2021-06-28 20:28:49.793] INFO: Music started
+[2021-06-28 20:28:51.105] INFO: Music stopped
+[2021-06-28 20:31:00.065] INFO: Terms accepted by the user.
+[2021-06-28 20:31:04.007] INFO: Elements, albums and playlists successfully saved
+[2021-06-28 20:31:14.871] INFO: Terms accepted by the user.
+[2021-06-28 20:31:18.798] INFO: Music started
+[2021-06-28 20:31:20.634] INFO: Music stopped
+[2021-06-28 20:32:24.641] INFO: Terms accepted by the user.
+[2021-06-28 20:32:29.821] INFO: Music started
+[2021-06-28 20:32:31.447] INFO: Music stopped
+[2021-06-28 20:32:32.647] INFO: Music stopped
+[2021-06-28 20:32:43.836] INFO: Music started
+[2021-06-28 20:32:52.768] INFO: Music stopped
+[2021-06-28 23:30:48.508] TEST: JUnit test
+[2021-06-28 23:31:59.503] TEST: JUnit test
+[2021-06-28 23:36:26.824] TEST: JUnit test
+[2021-06-28 23:36:31.897] TEST: JUnit test

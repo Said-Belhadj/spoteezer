@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>AudioBook.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">spoteezer</a> &gt; <a href="index.source.html" class="el_package">musichub.business</a> &gt; <span class="el_source">AudioBook.java</span></div><h1>AudioBook.java</h1><pre class="source lang-java linenums">package musichub.business;
+
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+
+public class AudioBook extends AudioElement {
+    private Language language;
+    private Category category;
+
+    public AudioBook(String title, String artist, int lengthInSeconds, String uid, String content, String language, String category) {
+<span class="nc" id="L11">        super(title, artist, lengthInSeconds, uid, content);</span>
+<span class="nc" id="L12">        this.setLanguage(language);</span>
+<span class="nc" id="L13">        this.setCategory(category);</span>
+<span class="nc" id="L14">    }</span>
+
+    public AudioBook(String title, String artist, int lengthInSeconds, String content, String language, String category) {
+<span class="fc" id="L17">        super(title, artist, lengthInSeconds, content);</span>
+<span class="fc" id="L18">        this.setLanguage(language);</span>
+<span class="fc" id="L19">        this.setCategory(category);</span>
+<span class="fc" id="L20">    }</span>
+
+    public AudioBook(Element xmlElement) {
+<span class="nc" id="L23">        super(xmlElement);</span>
+<span class="nc" id="L24">        this.setLanguage(xmlElement.getElementsByTagName(&quot;language&quot;).item(0).getTextContent());</span>
+<span class="nc" id="L25">        this.setCategory(xmlElement.getElementsByTagName(&quot;category&quot;).item(0).getTextContent());</span>
+<span class="nc" id="L26">    }</span>
+
+    public Language getLanguage() {
+<span class="fc" id="L29">        return this.language;</span>
+    }
+
+    public void setLanguage(String language) {
+<span class="pc bpc" id="L33" title="4 of 5 branches missed.">        switch (language.toLowerCase()) {</span>
+<span class="nc" id="L34">            default -&gt; this.language = Language.ENGLISH;</span>
+<span class="fc" id="L35">            case &quot;french&quot; -&gt; this.language = Language.FRENCH;</span>
+<span class="nc" id="L36">            case &quot;german&quot; -&gt; this.language = Language.GERMAN;</span>
+<span class="nc" id="L37">            case &quot;spanish&quot; -&gt; this.language = Language.SPANISH;</span>
+<span class="nc" id="L38">            case &quot;italian&quot; -&gt; this.language = Language.ITALIAN;</span>
+        }
+<span class="fc" id="L40">    }</span>
+
+    public Category getCategory() {
+<span class="fc" id="L43">        return this.category;</span>
+    }
+
+    public void setCategory(String category) {
+<span class="pc bpc" id="L47" title="4 of 5 branches missed.">        switch (category.toLowerCase()) {</span>
+<span class="nc" id="L48">            default -&gt; this.category = Category.YOUTH;</span>
+<span class="fc" id="L49">            case &quot;novel&quot; -&gt; this.category = Category.NOVEL;</span>
+<span class="nc" id="L50">            case &quot;theater&quot; -&gt; this.category = Category.THEATER;</span>
+<span class="nc" id="L51">            case &quot;documentary&quot; -&gt; this.category = Category.DOCUMENTARY;</span>
+<span class="nc" id="L52">            case &quot;speech&quot; -&gt; this.category = Category.SPEECH;</span>
+        }
+<span class="fc" id="L54">    }</span>
+
+
+    public String toString() {
+<span class="nc" id="L58">        return super.toString() + &quot;, Language = &quot; + getLanguage() + &quot;, Category = &quot; + getCategory() + &quot;\n&quot;;</span>
+    }
+
+
+    public void createXMLElement(Document document, Element parentElement) {
+        // audiobook element
+<span class="nc" id="L64">        Element audioBook = document.createElement(&quot;audiobook&quot;);</span>
+
+<span class="nc" id="L66">        super.createXMLElement(document, audioBook);</span>
+
+<span class="nc" id="L68">        Element languageElement = document.createElement(&quot;language&quot;);</span>
+<span class="nc" id="L69">        languageElement.appendChild(document.createTextNode(language.getLanguage()));</span>
+<span class="nc" id="L70">        audioBook.appendChild(languageElement);</span>
+
+<span class="nc" id="L72">        Element categoryElement = document.createElement(&quot;category&quot;);</span>
+<span class="nc" id="L73">        categoryElement.appendChild(document.createTextNode(category.getCategory()));</span>
+<span class="nc" id="L74">        audioBook.appendChild(categoryElement);</span>
+
+<span class="nc" id="L76">        parentElement.appendChild(audioBook);</span>
+<span class="nc" id="L77">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>
