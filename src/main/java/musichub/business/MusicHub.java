@@ -6,11 +6,10 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import java.io.IOException;
-import java.util.*;
-
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
+import java.io.IOException;
+import java.util.*;
 
 class SortByDate implements Comparator<Album> {
     public int compare(Album a1, Album a2) {
@@ -352,13 +351,20 @@ public class MusicHub {
             }
         }
 
-        if(searchResult.isEmpty()){
+        if (searchResult.isEmpty()) {
             throw new NoElementFoundException("Any result for your search");
         }
-        if (searchResult.size()==1){
+        if (searchResult.size() == 1) {
             this.getAudioElement(searchResult, searchResult.get(0).getTitle());
         }
     }
+
+    /**
+     * Method getting a list of playlists
+     *
+     * @return a list of playlist titles
+     * @author Anthony BOULANT
+     */
     public String getPlayListsTitles() {
         StringBuilder titleList = new StringBuilder();
 
@@ -367,6 +373,14 @@ public class MusicHub {
         return titleList.toString();
     }
 
+    /**
+     * Method checking the songs contained in a chosen playlist and returning them if found.
+     *
+     * @param playListTitle the title of a (chosen) playlist
+     * @return a list of songs from a playlist
+     * @throws NoPlayListFoundException if the chosen playlist doesn't exist
+     * @author Anthony BOULANT
+     */
     public List<AudioElement> getPlayListSongs(String playListTitle) throws NoPlayListFoundException {
         PlayList thePlayList = null;
         ArrayList<AudioElement> songsInPlayList = new ArrayList<>();
