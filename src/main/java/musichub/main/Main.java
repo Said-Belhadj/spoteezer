@@ -91,14 +91,25 @@ public class Main {
                     String genre = scan.nextLine();
                     System.out.println("Song artist: ");
                     String artist = scan.nextLine();
-                    System.out.println("Song length in seconds: ");
-                    int length = Integer.parseInt(scan.nextLine());
+
+                    int length;
+                    try {
+                        System.out.println("Song length in seconds: ");
+                        length = Integer.parseInt(scan.nextLine());
+                    } catch (NumberFormatException ex) {
+                        String logMsg = "You've not provided a number for the length.";
+                        LogHandler.write(logMsg, "ERROR"); //write a line in the log file
+                        System.err.println(logMsg);
+                        System.out.println("Type h for available commands");
+                        choice = scan.nextLine();
+                        break;
+                    }
 
                     System.out.println("Song content: ");
                     String content = scan.nextLine();
                     if (!isPathValid(content)) {
-                        String logMsg = "The music file was not found with the path you've provided or the extension is not .wav";
-                        LogHandler.write(logMsg, "WARNING"); //write a line in the log file
+                        String logMsg = "The music file cannot be found with the path you've provided or the extension is not .wav";
+                        LogHandler.write(logMsg, "ERROR"); //write a line in the log file
                         System.err.println(logMsg);
                         System.out.println("Type h for available commands");
                         choice = scan.nextLine();
